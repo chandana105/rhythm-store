@@ -6,4 +6,52 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.avatar-large {
+  width: 3rem;
+}
 
+.cart .badge-avatar-large-icons {
+  height: 1.4rem;
+  width: 1.4rem;
+  padding: 0.5rem;
+  border: 0rem solid var(--badge-white-color);
+}
+
+.avatar-badge-icons-cart {
+  position: absolute;
+  top: 2.3rem;
+  right: 0.7rem;
+}
+
+.badge-red{
+  background-color: var(--badge-white-color);
+  color : var(--header-link-color)
+}
+
+.avatar-small {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+
+
+.checkbox{
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #c3c2c9;
+  background: #fff;
+  border-radius: 1px;
+  margin-right: 0.8rem;
+}
+
+.side-bar {
+  top: 4.8rem;
+  min-height: 100%;
+}
+
+ul{
+  padding: 0rem;
+}
