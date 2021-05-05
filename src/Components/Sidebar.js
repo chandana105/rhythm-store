@@ -1,6 +1,10 @@
 const Sidebar = () => {
   return (
     <div className="side-bar">
+       <div className="side-bar-box">
+           <span>FILTERS</span> 
+           <button class="btn btn-gp bg-red ">CLEAR ALL</button>
+           </div>     
       <ul>
         <li>
           <label>

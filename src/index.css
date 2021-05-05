@@ -48,10 +48,40 @@ body {
 }
 
 .side-bar {
-  top: 4.8rem;
+  top: 10rem;
   min-height: 100%;
 }
 
 ul{
   padding: 0rem;
+}
+ul > li label{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.side-bar-box{
+  /* background-color: var(--primary-color); */
+  width: 15rem;
+  height: 3rem;
+  position: fixed;
+  top:7rem;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  border: 0.01rem solid var(--primary-color);
+}
+
+.btn{
+  padding : 0rem;
+
+  letter-spacing: 0;
+}
+
+.bg-red{
+  background-color: var(--badge-white-color);
+  color: #7C3AED
 }
