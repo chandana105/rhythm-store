@@ -1,11 +1,13 @@
-import Nav from "./Components/Nav";
-import Sidebar from './Components/Sidebar'
+import Navbar from "./Components/Nav";
+import Sidebar from "./Components/Sidebar";
+import Main from './Components/Main'
 
 function App() {
   return (
     <div className="container">
-      <Nav />
+      <Navbar />
       <Sidebar />
+      <Main />
     </div>
   );
 }

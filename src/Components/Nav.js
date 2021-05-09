@@ -1,5 +1,5 @@
 import music from "../images/music.svg";
-import avatar from '../images/avatar.jpg'
+import avatar from "../images/avatar.jpg";
 // import person from '../images/person.png'
 
 const Nav = () => {
@@ -23,7 +23,6 @@ const Nav = () => {
       <a className="docs active" href="/docs.html">
         Products
       </a>
-    
 
       <a className="avatar-badge-container cart">
         <span className="avatar avatar-large">
@@ -43,12 +42,9 @@ const Nav = () => {
       </a>
       <a>
         <span className="avatar avatar-small">
-
           {/* <img src={person} alt="avatar-sm" 
           /> */}
-           <img src={avatar} alt="avatar-sm" 
-          />
-          
+          <img src={avatar} alt="avatar-sm" />
         </span>
       </a>
     </nav>
