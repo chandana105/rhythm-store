@@ -4,7 +4,7 @@ import avatar from "../images/avatar.jpg";
 
 const Nav = () => {
   return (
-    <nav className="header">
+    <nav className="header" id="navbar">
       <a className="logo" href="/index.html">
         <img width="80" src={music} alt="logo" />
         <span>

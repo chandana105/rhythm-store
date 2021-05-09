@@ -1,11 +1,11 @@
+import Card from "./MainContents/Card";
 const Main = () => {
   return (
     <div className="content">
       <main>
-        <div class="search-container main">
-          <div class="search-box search">
+        <div className="search-container sort">
+          <div className="search-box search">
             <span>Sort by:</span>
-
             <span>
               <select name="cars" id="cars">
                 <option value="volvo">Volvo</option>
@@ -15,6 +15,9 @@ const Main = () => {
               </select>
             </span>
           </div>
+        </div>
+        <div className="products">
+        <Card />
         </div>
       </main>
     </div>

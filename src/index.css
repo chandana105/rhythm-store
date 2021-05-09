@@ -1,39 +1,39 @@
 @import url("https://rhythmui.netlify.app/styles.css");
 body {
   margin: 0;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.avatar-large {
+#navbar .avatar-large {
   width: 3rem;
 }
 
-.cart .badge-avatar-large-icons {
+#navbar .cart .badge-avatar-large-icons {
   height: 1.4rem;
   width: 1.4rem;
   padding: 0.5rem;
   border: 0rem solid var(--badge-white-color);
 }
 
-.avatar-badge-icons-cart {
+#navbar .avatar-badge-icons-cart {
   position: absolute;
   top: 2.3rem;
   right: 0.7rem;
 }
 
-.badge-red {
+#navbar .badge-red {
   background-color: var(--badge-white-color);
   color: var(--header-link-color);
 }
 
-.avatar-small {
+#navbar .avatar-small {
   height: 2.5rem;
   width: 2.5rem;
 }
 
-.checkbox {
+/* sidebar */
+#side-bar .checkbox {
   width: 1rem;
   height: 1rem;
   border: 1px solid #c3c2c9;
@@ -42,21 +42,22 @@ body {
   margin-right: 0.8rem;
 }
 
-.side-bar {
+ .side-bar {
   top: 10rem;
   min-height: 100%;
 }
 
-ul {
+#side-bar ul {
   padding: 0rem;
 }
-ul > li label {
+
+#side-bar ul > li label {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.side-bar-box {
+#side-bar .side-bar-box {
   /* background-color: var(--primary-color); */
   width: 15rem;
   height: 3rem;
@@ -70,31 +71,37 @@ ul > li label {
   border: 0.01rem solid var(--primary-color);
 }
 
-.main{
+
+
+#side-bar .side-bar-box .btn {
+  padding: 0rem;
+  letter-spacing: 0;
+}
+
+#side-bar .side-bar-box .bg-red {
+  background-color: var(--badge-white-color);
+  color: #7c3aed;
+}
+
+#side-bar .side-bar-box .bg-red:focus {
+  background: none;
+}
+
+/* main */
+
+
+
+.content .sort{
   position: absolute;
   top: 1.6rem;
   right: 3rem;
 }
 
-.btn {
-  padding: 0rem;
-  letter-spacing: 0;
-}
-
-.bg-red {
-  background-color: var(--badge-white-color);
-  color: #7c3aed;
-}
-
-.bg-red:focus {
-  background: none;
-}
-
-
 /* sort */
 .content .search-container > div {
   padding: 0.5rem 0.5rem;
 }
+
 
 .content .search-box{
   width: 17rem;
@@ -107,9 +114,7 @@ ul > li label {
 .content .search-box select {
   background: url('./images/dropdown.svg') no-repeat right;
     -webkit-appearance: none;
-
 }
-
 
 
 .content .search-box select{
@@ -126,5 +131,15 @@ ul > li label {
   padding: 3rem;
   width: 15rem;
   background-color: #7c3aed;
-} */
+} */  
 
+
+.content .products{
+  position: relative;
+  top: 4.5rem;
+}
+
+
+#card .btn{
+  width : 100%;
+}
