@@ -145,7 +145,6 @@ body {
   margin: auto;
 }
 
-
 #cart main {
   border: 2px solid #7c3aed;
   flex-direction: row;
@@ -158,18 +157,100 @@ body {
   width: 75%;
   padding: 1rem;
   border: 1px solid #ccc;
-
 }
 
-#cart .card-horizontal .thumbnail img {
-  max-width: 12rem;
-}
+
 
 #cart .checkout {
   width: 25%;
   padding: 1rem;
-
   border: 1px solid #ccc;
 }
 
+#cart .cartItems .side-bar-box {
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  border: 0.01rem solid var(--primary-color);
+  margin-bottom: 2rem;
+  box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
 
+#cart .card2 {
+  align-items: flex-start;
+  box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+#cart .card-horizontal .text {
+  padding: 0.5rem 1rem;
+}
+
+#cart .card-horizontal .text .text-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+#cart .card-horizontal .text .text-header-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#cart .floating {
+  position: relative;
+  right: 0.2rem;
+  bottom: 0rem;
+  left: 0.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size :inherit;
+  border-radius: 50%;
+  outline: none;
+  background-color: var(--text-container-color);
+  padding: 0rem;
+  cursor: pointer;
+  z-index: 0;
+  color: var(--header-link-color);
+  border: 0.1rem solid var(--header-link-color);
+  box-shadow: none;
+}
+
+
+#cart .card-horizontal  .quantity {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+}
+
+#cart .card-horizontal .quantity-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 23%;
+  text-align: center;
+}
+
+#cart .text .btn-container-box {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  /* width: 5rem; */
+}
+
+#cart .thumbnail button, .text button, .card-horizontal  .btn-primary {
+  background : var(--primary-color);
+
+}
+
+#cart .thumbnail button, .text button, .card-horizontal .btn-secondary {
+  background : var(--secondary-color);
+}

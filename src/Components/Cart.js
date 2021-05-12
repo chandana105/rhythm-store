@@ -1,4 +1,4 @@
-import card from '../images/card.webp'
+import card from "../images/card.webp";
 import Navbar from "./Nav";
 
 const Cart = () => {
@@ -9,25 +9,49 @@ const Cart = () => {
         <div className="content">
           <main>
             <div className="cartItems">
+              <div className="side-bar-box">
+                <span>My Cart (1 Item)</span>
+                <span>Total Rs. 1,021</span>
+              </div>
               <div className="card2 card-horizontal">
                 <div className="thumbnail">
                   <img src={card} alt="horizontal-img" />
                 </div>
                 <div className="text">
-                  <span className="card-title">Card Title</span>
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Aspernatur, fuga vero aliquam ducimus error obcaecati unde
-                    ipsum voluptas temporibus nihil molestias voluptates.
-                    Aliquam maiores repellat sed quas amet itaque tempore
-                    impedit placeat! Explicabo id iste, velit nobis veniam ab.
-                    Deleniti nihil et id alias. Quidem, nostrum? Laborum dolore
-                    rem quo.
-                  </p>
+                  <div className="text-header">
+                    <span className="card-title">English Skirts</span>
+                    <span>
+                      <b>
+                        <i class="fas fa-rupee-sign"></i> 1,021
+                      </b>
+                    </span>
+                  </div>
+                  <div className="text-header">
+                    <p>Women Slim Fit Formal Skirts</p>
+                    <div className="text-header-right">
+                      <span className="price-strike">
+                        <i className="fas fa-rupee-sign"></i> 2043
+                      </span>
+                      <span className="discount">(50% OFF)</span>
+                    </div>
+                  </div>
+                  <div className="quantity">
+                    <span>Quantity : </span>
+                    <div className="quantity-buttons">
+                      <button class="floating">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <span>1</span>
+                      <button class="floating">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="btn-container-box">
+                    <button class="btn btn-primary">Primary</button>
+                    <button class="btn btn-secondary">Secondary</button>
+                  </div>
                 </div>
-                <button className="close">
-                  <i className="fas fa-times"></i>
-                </button>
               </div>
             </div>
             <div className="checkout">Bye</div>
