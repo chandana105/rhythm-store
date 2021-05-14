@@ -1,25 +1,20 @@
 import card from "../../images/card.webp";
 
-const Card = () => {
+const WishlistCard = () => {
   return (
-    <div className="card" id="card">
+    <div className="card " id="card">
       <div className="thumbnail">
         <img src={card} alt="card" />
         <span className="badge-regular bg-primary badge">NEW</span>
+        <button class="close">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
       <div className="text">
         <button className="wish">
           <i className="far fa-heart fa-lg"></i>
         </button>
         <h2 className="heading">English Skirts</h2>
-        <span className="lower">Women Slim Fit Formal Skirts</span>
-        <div className="rating">
-          <div class="star-rating high">
-            <span>4.6</span>
-            <i class="fas fa-star"></i>
-          </div>
-          <div className="discount">Fast Delivery</div>
-        </div>
         <span className="price">
           <span className="product-price">
             <i class="fas fa-rupee-sign"></i> 479
@@ -31,9 +26,9 @@ const Card = () => {
         </span>
       </div>
 
-      <button className="btn btn-primary">Add To Cart</button>
+      <button className="btn btn-primary">Move To Cart</button>
     </div>
   );
 };
 
-export default Card;
+export default WishlistCard;

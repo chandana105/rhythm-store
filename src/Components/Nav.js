@@ -26,7 +26,7 @@ const Nav = () => {
         Products
       </Link>
 
-      <Link to="/" className="avatar-badge-container cart">
+      <Link to="/wishlist" className="avatar-badge-container cart">
         <span className="avatar avatar-large">
           <i className="far fa-heart"></i>
         </span>

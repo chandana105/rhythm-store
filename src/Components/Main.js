@@ -17,7 +17,7 @@ const Main = () => {
           </div>
         </div>
         <div className="products">
-        <Card />
+          <Card />
         </div>
       </main>
     </div>

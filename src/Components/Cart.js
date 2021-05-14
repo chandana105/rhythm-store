@@ -1,4 +1,4 @@
-import Checkout from './MainContents/Checkout'
+import Checkout from "./MainContents/Checkout";
 import CartItems from "./MainContents/CartItems";
 import Navbar from "./Nav";
 
@@ -9,6 +9,7 @@ const Cart = () => {
       <div className="content">
         <main>
           <CartItems />
+
           <Checkout />
         </main>
       </div>
