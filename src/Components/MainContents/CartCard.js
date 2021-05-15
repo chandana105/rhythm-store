@@ -11,7 +11,7 @@ const CartCard = () => {
           <span className="card-title">English Skirts</span>
           <span>
             <b>
-              <i class="fas fa-rupee-sign"></i> 1,021
+              <i className="fas fa-rupee-sign"></i> 1,021
             </b>
           </span>
         </div>
@@ -27,18 +27,18 @@ const CartCard = () => {
         <div className="quantity">
           <span>Quantity : </span>
           <div className="quantity-buttons">
-            <button class="floating">
-              <i class="fas fa-minus"></i>
+            <button className="floating">
+              <i className="fas fa-minus"></i>
             </button>
             <span>1</span>
-            <button class="floating">
-              <i class="fas fa-plus"></i>
+            <button className="floating">
+              <i className="fas fa-plus"></i>
             </button>
           </div>
         </div>
-        <div class="btn-container-box">
-          <button class="btn btn-primary">MOVE TO WISHLIST</button>
-          <button class="btn btn-secondary">REMOVE</button>
+        <div className="btn-container-box">
+          <button className="btn btn-primary">MOVE TO WISHLIST</button>
+          <button className="btn btn-secondary">REMOVE</button>
         </div>
       </div>
     </div>
