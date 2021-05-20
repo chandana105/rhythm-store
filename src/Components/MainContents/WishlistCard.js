@@ -6,8 +6,8 @@ const WishlistCard = () => {
       <div className="thumbnail">
         <img src={card} alt="card" />
         <span className="badge-regular bg-primary badge">NEW</span>
-        <button class="close">
-          <i class="fas fa-times"></i>
+        <button className="close">
+          <i className="fas fa-times"></i>
         </button>
       </div>
       <div className="text">
@@ -17,10 +17,10 @@ const WishlistCard = () => {
         <h2 className="heading">English Skirts</h2>
         <span className="price">
           <span className="product-price">
-            <i class="fas fa-rupee-sign"></i> 479
+            <i className="fas fa-rupee-sign"></i> 479
           </span>
           <span className="price-strike">
-            <i class="fas fa-rupee-sign"></i> 999
+            <i className="fas fa-rupee-sign"></i> 999
           </span>
           <span className="discount">(52% OFF)</span>
         </span>

@@ -14,18 +14,18 @@ const Card = () => {
         <h2 className="heading">English Skirts</h2>
         <span className="lower">Women Slim Fit Formal Skirts</span>
         <div className="rating">
-          <div class="star-rating high">
+          <div className="star-rating high">
             <span>4.6</span>
-            <i class="fas fa-star"></i>
+            <i className="fas fa-star"></i>
           </div>
           <div className="discount">Fast Delivery</div>
         </div>
         <span className="price">
           <span className="product-price">
-            <i class="fas fa-rupee-sign"></i> 479
+            <i className="fas fa-rupee-sign"></i> 479
           </span>
           <span className="price-strike">
-            <i class="fas fa-rupee-sign"></i> 999
+            <i className="fas fa-rupee-sign"></i> 999
           </span>
           <span className="discount">(52% OFF)</span>
         </span>

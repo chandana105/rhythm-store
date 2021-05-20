@@ -9,7 +9,6 @@ const Cart = () => {
       <div className="content">
         <main>
           <CartItems />
-
           <Checkout />
         </main>
       </div>

@@ -5,6 +5,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#navbar .search-box{
+  width: 15rem;
+}
+
+#navbar .search-box span input {
+width: 12rem;
+}
+
 #navbar .avatar-large {
   width: 3rem;
 }
@@ -119,6 +127,7 @@ body {
   outline: none;
   background-color: inherit;
   font-weight: bold;
+  cursor: pointer;
 }
 
 /* .content .search-box select:hover{
@@ -130,13 +139,15 @@ body {
   width: 15rem;
   background-color: var(--secondary-color);
   border: 1px solid #fff;
-  /* cursor: pointer; */
+  cursor: pointer;
+
   /* font-weight: normal;
     display: flex;
     white-space: nowrap;
     min-height: 1.2em;
     padding: 0px 2px 1px; */
 }
+
 
 .content .products {
   position: relative;
@@ -311,6 +322,7 @@ body {
   box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%);
   border-radius: 0.5rem;
   padding: 1rem;
+  height: max-content;
 }
 
 #cart .checkout .text .hr-line {
@@ -353,13 +365,13 @@ body {
 }
 
 /* wishlist */
-#wishlist .content {
+#wishlist .content , #empty-wishlist .content {
   grid-column: 1 / -1;
   padding-left: 0rem;
   margin-left: 3rem;
 }
 
-#wishlist main {
+#wishlist main , #empty-wishlist main {
   /* border: 2px solid #fff; */
   flex-direction: column;
   justify-content: space-between;
@@ -401,4 +413,43 @@ body {
 
 #wishlist .wishlistItems #card .wish {
   right: 0rem;
+}
+
+/* empty wishlist */
+
+.wish-container > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#empty-wishlist .content{
+  margin-left: 0rem;
+}
+
+#empty-wishlist .empty-wishlist-card{
+  box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#empty-wishlist .empty-wishlist-card p{
+  padding-top: 1rem;
+}
+
+#empty-wishlist .empty-wishlist-card img{
+  padding-top: 1rem;
+  width: 100%;
+  max-width: 20rem;
+  padding-bottom: 1rem;
+}
+
+#empty-wishlist .empty-wishlist-card .btn{
+  border-radius: 1rem;
+  /* width: 14rem; */
 }

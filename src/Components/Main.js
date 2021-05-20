@@ -1,4 +1,4 @@
-import Card from "./MainContents/Card";
+import ProductCard from "./MainContents/ProductCard";
 const Main = () => {
   return (
     <div className="content">
@@ -10,13 +10,12 @@ const Main = () => {
               <select name="sorting" id="sorting">
                 <option value="Price: High to Low">Price: High to Low</option>
                 <option value="Price: Low to High">Price: Low to High</option>
-                
               </select>
             </span>
           </div>
         </div>
         <div className="products">
-          <Card />
+          <ProductCard />
         </div>
       </main>
     </div>

@@ -17,7 +17,7 @@ const Nav = () => {
         <div className="search-box search">
           <i className="fas fa-search"></i>
           <span>
-            <input type="text" name="" placeholder="Search..." />
+            <input type="text" name="" placeholder="Search for Products" />
           </span>
         </div>
       </div>
