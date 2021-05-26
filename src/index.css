@@ -151,13 +151,38 @@ width: 12rem;
 
 .content .products {
   position: relative;
-  top: 4.5rem;
+  top: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  /* margin: auto; */
 }
 
 .content .products .card {
   box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%);
   border-radius: 0.5rem;
   padding: 1rem;
+  justify-content: space-between;
+  height: 85vh;
+}
+
+.content .products .card .heading {
+  line-height: 1.1;
+}
+
+.content .products .card .wish{
+  top: 0rem;
+  right: 0rem;
+  left: 11rem
+}
+
+.content .products .card .text{
+}
+
+.content .products .card .thumbnail img {
+  max-width: 10rem;
+  object-fit: contain;
 }
 
 /* card */

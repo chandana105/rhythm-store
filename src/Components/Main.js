@@ -1,4 +1,6 @@
 import ProductCard from "./MainContents/ProductCard";
+import  {data}  from "../Data";
+
 const Main = () => {
   return (
     <div className="content">
@@ -15,7 +17,7 @@ const Main = () => {
           </div>
         </div>
         <div className="products">
-          <ProductCard />
+          {data.map(item => <ProductCard item={item}  />)}
         </div>
       </main>
     </div>
@@ -23,3 +25,8 @@ const Main = () => {
 };
 
 export default Main;
+
+
+// {Data.map((item) => (
+//   <ProductCard item={item} />
+// ))}

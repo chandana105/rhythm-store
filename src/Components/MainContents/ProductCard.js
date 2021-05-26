@@ -1,33 +1,34 @@
-import card from "../../images/card.webp";
 
-const Card = () => {
+const Card = ({item}) => {
+  const {id , name , description, ratings, delivery, image , priceDetails}  = item
   return (
-    <div className="card" id="card">
+    <div className="card" id="card" key={id}>
       <div className="thumbnail">
-        <img src={card} alt="card" />
-        <span className="badge-regular bg-primary badge">NEW</span>
+        <img src={image} alt="card" />
+        <button className="wish">
+          <i className="far fa-heart fa-2x"></i>
+        </button>
       </div>
       <div className="text">
-        <button className="wish">
-          <i className="far fa-heart fa-lg"></i>
-        </button>
-        <h2 className="heading">English Skirts</h2>
-        <span className="lower">Women Slim Fit Formal Skirts</span>
+        
+        <h3 className="heading">{name}</h3>
+        <span className="lower">{description}</span>
         <div className="rating">
           <div className="star-rating high">
-            <span>4.6</span>
+            <span>{ratings}</span>
+            &nbsp;
             <i className="fas fa-star"></i>
           </div>
-          <div className="discount">Fast Delivery</div>
+          <div className="discount">{delivery}</div>
         </div>
         <span className="price">
           <span className="product-price">
-            <i className="fas fa-rupee-sign"></i> 479
+            <i className="fas fa-rupee-sign"></i> {priceDetails.discountedPrice}
           </span>
           <span className="price-strike">
-            <i className="fas fa-rupee-sign"></i> 999
+            <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}
           </span>
-          <span className="discount">(52% OFF)</span>
+          <span className="discount">({priceDetails.discount} OFF)</span>
         </span>
       </div>
 
