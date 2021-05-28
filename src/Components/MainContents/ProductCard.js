@@ -1,14 +1,27 @@
-
-const Card = ({item}) => {
-  const {id , name , description, ratings, delivery, image , priceDetails  }  = item
+const Card = ({ item }) => {
+  const {
+    id,
+    name,
+    description,
+    ratings,
+    delivery,
+    image,
+    priceDetails,
+    inStock,
+  } = item;
   return (
-    <div className="card" id="card" >
+    <div className="card" id="card">
       <div className="thumbnail">
         <img src={image} alt="card" />
         <button className="wish">
           <i className="far fa-heart fa-2x"></i>
         </button>
+        {!inStock && 
+        <div className="overlay">
+          <span>OUT OF STOCK</span>
+        </div>}
       </div>
+
       <div className="text">
         <h3 className="heading">{name}</h3>
         <span className="lower">{description}</span>
@@ -31,7 +44,13 @@ const Card = ({item}) => {
         </span>
       </div>
 
-      <button className="btn btn-primary">Add To Cart</button>
+      {inStock ? (
+        <button className="btn btn-primary">Add To Cart</button>
+      ) : (
+        <button className="btn btn-primary disabled" disabled>
+          Add To Cart
+        </button>
+      )}
     </div>
   );
 };

@@ -16,29 +16,29 @@ const Sidebar = () => {
       </div>
       <ul>
         <li>
-          <label>
+          <label className="checkbox-label">
             <input
               type="checkbox"
               className="checkbox"
               checked={showInventoryAll}
               onChange={() => productDispatch({ type: "TOGGLE_INVENTORY" })}
             />
-            Include Out Of Stock
+            <span>Include Out Of Stock</span>
           </label>
         </li>
         <li>
-          <label>
+          <label className="checkbox-label">
             <input
               type="checkbox"
               className="checkbox"
               checked={showFastDelivery}
               onChange={() => productDispatch({ type: "TOGGLE_DELIVERY" })}
             />
-            Fast Delivery Only
+            <span>Fast Delivery Only</span>
           </label>
         </li>
         <li>
-          <label style={{ display: "block", marginTop: "1rem" }}>
+          <label style={{ display: "block", marginTop: "1rem" }} className="price-range-label">
             Price Range
             <input
               type="range"
