@@ -2,7 +2,7 @@
 const Card = ({item}) => {
   const {id , name , description, ratings, delivery, image , priceDetails}  = item
   return (
-    <div className="card" id="card" key={id}>
+    <div className="card" id="card" >
       <div className="thumbnail">
         <img src={image} alt="card" />
         <button className="wish">
@@ -10,7 +10,6 @@ const Card = ({item}) => {
         </button>
       </div>
       <div className="text">
-        
         <h3 className="heading">{name}</h3>
         <span className="lower">{description}</span>
         <div className="rating">
