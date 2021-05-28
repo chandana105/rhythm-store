@@ -1,6 +1,6 @@
 
 const Card = ({item}) => {
-  const {id , name , description, ratings, delivery, image , priceDetails}  = item
+  const {id , name , description, ratings, delivery, image , priceDetails  }  = item
   return (
     <div className="card" id="card" >
       <div className="thumbnail">

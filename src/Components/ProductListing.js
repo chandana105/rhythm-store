@@ -1,28 +1,11 @@
-import React, { useReducer } from "react";
-// import { productReducer, filteredData } from "../Reducers/productReducer";
-
 import Navbar from "./Nav";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
-import {data} from '../Data'
-
- const productReducer = (state, action) => {
-  switch (action.type) {
-    case "SORT":
-      return {
-        ...state,
-        sortBy: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
+import { data } from "../Data";
+import { useStore } from "../Contexts/storeContext";
 
 export default function ProductListing() {
-  const [{ sortBy }, productDispatch] = useReducer(productReducer, {
-    sortBy: "Price: High to Low",
-  });
+  const { sortBy, showInventoryAll, showFastDelivery, priceRange } = useStore();
 
   const getSortedData = (productList, sortBy) => {
     if (sortBy && sortBy === "Price: High to Low") {
@@ -41,21 +24,31 @@ export default function ProductListing() {
 
   const sortedData = getSortedData([...data], sortBy);
 
-  const getFilteredData = (sortedData) => {
-    return sortedData;
+  const getFilteredData = (
+    sortedData,
+    { showInventoryAll, showFastDelivery, priceRange }
+  ) => {
+    return sortedData
+      .filter(({ inStock }) => (showInventoryAll ? true : inStock))
+      .filter(({ fastDelivery }) => (showFastDelivery ? fastDelivery : true))
+      .filter(
+        ({ priceDetails }) =>
+          priceDetails.discountedPrice > 0 &&
+          priceDetails.discountedPrice <= priceRange
+      );
   };
 
-  const filteredData = getFilteredData(sortedData);
+  const filteredData = getFilteredData(sortedData, {
+    showInventoryAll,
+    showFastDelivery,
+    priceRange,
+  });
 
   return (
     <div className="container">
       <Navbar />
       <Sidebar />
-      <Main
-        sortBy={sortBy}
-        productDispatch={productDispatch}
-        filteredData={filteredData}
-      />
+      <Main filteredData={filteredData} />
     </div>
   );
 }

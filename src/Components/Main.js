@@ -1,7 +1,9 @@
 import ProductCard from "./MainContents/ProductCard";
-// import { filteredData } from "../";
+import { useStore } from "../Contexts/storeContext";
 
-const Main = ({ sortBy, productDispatch ,filteredData }) => {
+const Main = ({ filteredData }) => {
+  const { sortBy, productDispatch } = useStore();
+
   return (
     <div className="content">
       <main>
@@ -17,8 +19,8 @@ const Main = ({ sortBy, productDispatch ,filteredData }) => {
                 }
                 value={sortBy}
               >
-                <option value="Price: High to Low">Price: High to Low</option>
                 <option value="Price: Low to High">Price: Low to High</option>
+                <option value="Price: High to Low">Price: High to Low</option>
               </select>
             </span>
           </div>
@@ -34,7 +36,3 @@ const Main = ({ sortBy, productDispatch ,filteredData }) => {
 };
 
 export default Main;
-
-// {Data.map((item) => (
-//   <ProductCard item={item} />
-// ))}
