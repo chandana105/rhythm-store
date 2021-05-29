@@ -1,4 +1,7 @@
+import { useCart } from "../../Contexts/cart-context";
+
 const Card = ({ item }) => {
+  const { cartItems, cartDispatch } = useCart();
   const {
     id,
     name,
@@ -16,10 +19,11 @@ const Card = ({ item }) => {
         <button className="wish">
           <i className="far fa-heart fa-2x"></i>
         </button>
-        {!inStock && 
-        <div className="overlay">
-          <span>OUT OF STOCK</span>
-        </div>}
+        {!inStock && (
+          <div className="overlay">
+            <span>OUT OF STOCK</span>
+          </div>
+        )}
       </div>
 
       <div className="text">
@@ -45,7 +49,12 @@ const Card = ({ item }) => {
       </div>
 
       {inStock ? (
-        <button className="btn btn-primary">Add To Cart</button>
+        <button
+          className="btn btn-primary"
+          onClick={() => cartDispatch({ type: "ADD_TO_CART", payload: {...item , qty : 1} })}
+        >
+          Add To Cart
+        </button>
       ) : (
         <button className="btn btn-primary disabled" disabled>
           Add To Cart

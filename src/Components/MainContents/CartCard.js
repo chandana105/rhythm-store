@@ -1,27 +1,30 @@
-import card from "../../images/card.webp";
+// import {useCart} from '../../Contexts/cart-context'
 
-const CartCard = () => {
-  return (
-    <div className="card2 card-horizontal">
+const CartCard = ({item}) => {
+  // const { = useCart();
+  // console.log(cartItems)
+  const {id ,name , image, priceDetails , description , qty  } = item
+    return (
+    <div className="card2 card-horizontal" >
       <div className="thumbnail">
-        <img src={card} alt="horizontal-img" />
+        <img src={image} alt="horizontal-img" />
       </div>
       <div className="text">
         <div className="text-header">
-          <span className="card-title">English Skirts</span>
+          <span className="card-title">{name}</span>
           <span>
             <b>
-              <i className="fas fa-rupee-sign"></i> 1,021
+              <i className="fas fa-rupee-sign"></i> {priceDetails.discountedPrice}
             </b>
           </span>
         </div>
         <div className="text-header">
-          <p>Women Slim Fit Formal Skirts</p>
+          <p>{description}</p>
           <div className="text-header-right">
             <span className="price-strike">
-              <i className="fas fa-rupee-sign"></i> 2043
+              <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}
             </span>
-            <span className="discount">(50% OFF)</span>
+            <span className="discount">({priceDetails.discount} OFF)</span>
           </div>
         </div>
         <div className="quantity">
@@ -30,7 +33,7 @@ const CartCard = () => {
             <button className="floating">
               <i className="fas fa-minus"></i>
             </button>
-            <span>1</span>
+            <span>{qty}</span>
             <button className="floating">
               <i className="fas fa-plus"></i>
             </button>

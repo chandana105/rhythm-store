@@ -2,7 +2,7 @@ import Navbar from "./Nav";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
 import { data } from "../Data";
-import { useStore } from "../Contexts/storeContext";
+import { useStore } from "../Contexts/store-context";
 
 export default function ProductListing() {
   const { sortBy, showInventoryAll, showFastDelivery, priceRange } = useStore();

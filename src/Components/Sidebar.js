@@ -1,4 +1,4 @@
-import { useStore } from "../Contexts/storeContext";
+import { useStore } from "../Contexts/store-context";
 
 const Sidebar = () => {
   const { showInventoryAll, showFastDelivery, productDispatch, priceRange } =
@@ -38,7 +38,10 @@ const Sidebar = () => {
           </label>
         </li>
         <li>
-          <label style={{ display: "block", marginTop: "1rem" }} className="price-range-label">
+          <label
+            style={{ display: "block", marginTop: "1rem" }}
+            className="price-range-label"
+          >
             Price Range
             <input
               type="range"

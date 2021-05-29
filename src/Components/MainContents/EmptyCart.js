@@ -10,11 +10,9 @@ const EmptyCart = () => {
         <main>
           <div className="empty-wishlist-card">
             <h3>YOUR CART IS EMPTY</h3>
-            <p>
-              Add items to your cart now.
-            </p>
+            <p>Add items to your cart now.</p>
             <img src={cart} />
-            <button class="btn btn-primary">
+            <button className="btn btn-primary">
               <Link to="/product-listing">SHOP NOW</Link>
             </button>
           </div>
