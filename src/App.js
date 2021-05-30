@@ -6,15 +6,16 @@ import Cart from "./Components/Cart";
 import EmptyWishlist from "./Components/MainContents/EmptyWishlist";
 import EmptyCart from "./Components/MainContents/EmptyCart";
 import { useCart } from "./Contexts/cart-context";
+import {totalItems} from './Utils/utils'
+
 
 function App() {
   const { cartItems } = useCart();
-  const itemsInCart = cartItems.length;
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/product-listing" element={<ProductListing />} />
-      {itemsInCart === 0 ? (
+      {totalItems(cartItems) === 0 ? (
         <Route path="/cart" element={<EmptyCart />} />
       ) : (
         <Route path="/cart" element={<Cart />} />

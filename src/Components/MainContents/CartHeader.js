@@ -1,12 +1,14 @@
-import {useCart} from '../../Contexts/cart-context'
+import {useCart} from '../../Contexts/cart-context';
+import {totalItems, totalPrice} from '../../Utils/utils'
 
 const CartHeader = () => {
   const {cartItems} = useCart();
-  const itemsInCart = cartItems.length
+
+
   return (
     <div className="side-bar-box">
-      <span>My Cart ({itemsInCart} {itemsInCart === 1 ? 'Item' : 'Items'})</span>
-      <span>Total Rs. 1,021</span>
+      <span>My Cart <b>({totalItems(cartItems)} Items</b>)</span>
+      <span>Total : <b>Rs. {totalPrice(cartItems)}</b></span>
     </div>
   );
 };

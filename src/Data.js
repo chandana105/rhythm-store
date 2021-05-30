@@ -22,8 +22,8 @@ export const data =  [
       },
       inStock: true,
       fastDelivery: true,
-      wished: false,
-      addedToCart: false,
+      isWishListed: false,
+      isAddedToCart: false,
     },
     {
       id: uuidv4(),
@@ -39,8 +39,8 @@ export const data =  [
       },
       inStock: false,
       fastDelivery: false,
-      wished: false,
-      addedToCart: false,
+      isWishListed: false,
+      isAddedToCart: false,
     },
     {
       id: uuidv4(),
@@ -56,8 +56,8 @@ export const data =  [
       },
       inStock: true,
       fastDelivery: true,
-      wished: false,
-      addedToCart: false,
+      isWishListed: false,
+      isAddedToCart: false,
     },
     {
       id: uuidv4(),
@@ -73,8 +73,8 @@ export const data =  [
       },
       inStock: true,
       fastDelivery: false,
-      wished: false,
-      addedToCart: false,
+      isWishListed: false,
+      isAddedToCart: false,
     },
     {
       id: uuidv4(),
@@ -90,8 +90,8 @@ export const data =  [
       },
       inStock: true,
       fastDelivery: true,
-      wished: false,
-      addedToCart: false,
+      isWishListed: false,
+      isAddedToCart: false,
     },
     {
       id: uuidv4(),
@@ -107,8 +107,8 @@ export const data =  [
       },
       inStock: false,
       fastDelivery: true,
-      wished: false,
-      addedToCart: false,
+      isWishListed: false,
+      isAddedToCart: false,
     },
   ];
 

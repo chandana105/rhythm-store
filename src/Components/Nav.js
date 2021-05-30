@@ -3,10 +3,11 @@ import music from "../images/music.svg";
 import avatar from "../images/avatar.jpg";
 // import person from '../images/person.png'
 import { useCart } from "../Contexts/cart-context";
+import {totalItems} from '../Utils/utils'
+
 
 const Nav = () => {
   const { cartItems } = useCart();
-  const itemsInCart = cartItems.length;
   return (
     <nav className="header" id="navbar">
       <Link to="/" className="logo">
@@ -42,9 +43,9 @@ const Nav = () => {
         <span className="avatar avatar-large">
           <i className="fas fa-shopping-cart "></i>
         </span>
-        {itemsInCart >= 1 && (
+        {totalItems(cartItems) >= 1 && (
           <span className="avatar-badge-icons-cart badge-avatar-large-icons cart badge-red">
-            {itemsInCart}
+            {totalItems(cartItems)}
           </span>
         )}
       </Link>

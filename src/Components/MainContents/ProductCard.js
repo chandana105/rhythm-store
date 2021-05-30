@@ -51,7 +51,12 @@ const Card = ({ item }) => {
       {inStock ? (
         <button
           className="btn btn-primary"
-          onClick={() => cartDispatch({ type: "ADD_TO_CART", payload: {...item , qty : 1} })}
+          onClick={() =>
+            cartDispatch({
+              type: "ADD_TO_CART",
+              payload: { ...item, quantity: 1, isAddedToCart: true },
+            })
+          }
         >
           Add To Cart
         </button>

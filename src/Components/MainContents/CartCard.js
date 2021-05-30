@@ -1,11 +1,11 @@
-// import {useCart} from '../../Contexts/cart-context'
+import { useCart } from "../../Contexts/cart-context";
 
-const CartCard = ({item}) => {
-  // const { = useCart();
-  // console.log(cartItems)
-  const {id ,name , image, priceDetails , description , qty  } = item
-    return (
-    <div className="card2 card-horizontal" >
+const CartCard = ({ item }) => {
+  const { cartDispatch } = useCart();
+
+  const { id, name, image, priceDetails, description, quantity } = item;
+  return (
+    <div className="card2 card-horizontal">
       <div className="thumbnail">
         <img src={image} alt="horizontal-img" />
       </div>
@@ -14,7 +14,8 @@ const CartCard = ({item}) => {
           <span className="card-title">{name}</span>
           <span>
             <b>
-              <i className="fas fa-rupee-sign"></i> {priceDetails.discountedPrice}
+              <i className="fas fa-rupee-sign"></i>{" "}
+              {priceDetails.discountedPrice}
             </b>
           </span>
         </div>
@@ -30,11 +31,18 @@ const CartCard = ({item}) => {
         <div className="quantity">
           <span>Quantity : </span>
           <div className="quantity-buttons">
-            <button className="floating">
+            <button className="floating"   onClick={() =>
+                cartDispatch({ type: "DECREMENT_QUANTITY", payload: item })
+              }>
               <i className="fas fa-minus"></i>
             </button>
-            <span>{qty}</span>
-            <button className="floating">
+            <span>{quantity}</span>
+            <button
+              className="floating"
+              onClick={() =>
+                cartDispatch({ type: "INCREMENT_QUANTITY", payload: item })
+              }
+            >
               <i className="fas fa-plus"></i>
             </button>
           </div>

@@ -1,16 +1,17 @@
 import CartHeader from "./CartHeader";
 import CartCard from "./CartCard";
-import {useCart} from '../../Contexts/cart-context'
-
+import { useCart } from "../../Contexts/cart-context";
 
 const CartItems = () => {
-  const {cartItems} = useCart();
+  const { cartItems } = useCart();
+  // console.log(cartItems)
 
   return (
     <div className="cartItems">
       <CartHeader />
-      {cartItems.map(item => <CartCard item={item} key={item.id} />)}
-      {/* <CartCard /> */}
+      {cartItems.map(
+        (item) => item.quantity !== 0 && <CartCard item={item} key={item.id} />
+      )}
     </div>
   );
 };
