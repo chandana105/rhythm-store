@@ -1,8 +1,12 @@
 import Navbar from "../Components/Nav";
 import WishlistCard from "./MainContents/WishlistCard";
 import WishlistHeader from "./MainContents/WishlistHeader";
+import { useCart} from '../Contexts/cart-context'
 
 const Wishlist = () => {
+  const {wishList} = useCart();
+  console.log({wishList})
+
   return (
     <div className="container" id="wishlist">
       <Navbar />
@@ -10,7 +14,9 @@ const Wishlist = () => {
         <main>
           <WishlistHeader />
           <div className="wishlistItems">
-            <WishlistCard />
+            {wishList.map(item => <WishlistCard item={item} key=
+            {item.id} /> )}
+            
           </div>
         </main>
       </div>

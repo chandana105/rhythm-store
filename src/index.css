@@ -120,10 +120,6 @@ width: 12rem;
   box-shadow: -205px 0 0 200px #8B5CF6;
 }
 
-
-
-
-
 #side-bar .side-bar-box {
   /* background-color: var(--primary-color); */
   width: 15rem;
@@ -219,7 +215,7 @@ width: 12rem;
   /* margin: auto; */
 }
 
-.content .products .card {
+.content .products .card , #wishlist .wishlistItems .card {
   box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%);
   border-radius: 0.5rem;
   padding: 1rem;
@@ -227,22 +223,33 @@ width: 12rem;
   height: 85vh;
 }
 
+#wishlist .wishlistItems .card {
+  height: 70vh;
+}
+
 .content .products .card .heading {
   line-height: 1.1;
 }
 
-.content .products .card .wish{
+.content .products .card .wish {
   top: 0rem;
   right: 0rem;
-  left: 11rem;
+  left: 10rem;
   cursor: pointer;
 }
 
+#wishlist .wishlistItems .card .close {
+  left: 11rem;
+  top: 0.1rem
+}
 
-.content .products .card .thumbnail img {
-  max-width: 10rem;
+
+.content .products .card .thumbnail img  , #wishlist .wishlistItems #card img {
+  max-width: 9rem;
   object-fit: contain;
 }
+
+
 
 
 
@@ -251,14 +258,17 @@ width: 12rem;
   width: 100%;
 }
 
-#card .disabled {
+#card .wishListed {
+  color: red;
+}
+
+#card .disabled , #wishlist .wishlistItems #card .disabled {
   cursor: not-allowed;
 }
 
 #card .overlay {
   bottom : 0rem;
   height: -webkit-fill-available;
-  
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -346,7 +356,7 @@ width: 12rem;
   align-items: center;
 }
 
-#cart .floating {
+#cart .floating  {
   position: relative;
   right: 0.2rem;
   bottom: 0rem;
@@ -549,4 +559,44 @@ width: 12rem;
 #empty-wishlist .empty-wishlist-card .btn{
   border-radius: 1rem;
   /* width: 14rem; */
+}
+
+
+/* Modal */
+.modal-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%);
+  border-radius: 0.5rem;
+}
+#modal .modal-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem;
+  border : none;
+  border-bottom: 1px solid #ccc;
+}
+
+#modal .modal-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.4rem;
+  border : none
+}
+
+#modal .modal-header img{
+  width: 100%;
+  max-width: 5rem;
+}
+
+#modal .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  border: none;
 }

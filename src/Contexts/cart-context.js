@@ -4,9 +4,9 @@ import {cartReducer} from '../Reducers/cartReducer'
 const CartContext = createContext();
 
 export const CartProvider = ({children}) => {
-    const [{cartItems , wishList} , cartDispatch] = useReducer(cartReducer , {cartItems : [] , wishList : []})
+    const [{cartItems , wishList  } , cartDispatch] = useReducer(cartReducer , {cartItems : [] , wishList : []  })
     return(
-        <CartContext.Provider value={{cartItems , wishList , cartDispatch}}>
+        <CartContext.Provider value={{cartItems , wishList  ,  cartDispatch}}>
             {children}
         </CartContext.Provider>
     )

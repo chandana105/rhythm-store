@@ -3,7 +3,17 @@ import { useCart } from "../../Contexts/cart-context";
 const CartCard = ({ item }) => {
   const { cartDispatch } = useCart();
 
-  const { id, name, image, priceDetails, description, quantity } = item;
+  const {
+    id,
+    name,
+    image,
+    priceDetails,
+    description,
+    quantity,
+    isAddedToCart,
+    isWishListed,
+  } = item;
+  // console.log(isAddedToCart);
   return (
     <div className="card2 card-horizontal">
       <div className="thumbnail">
@@ -31,9 +41,12 @@ const CartCard = ({ item }) => {
         <div className="quantity">
           <span>Quantity : </span>
           <div className="quantity-buttons">
-            <button className="floating"   onClick={() =>
+            <button
+              className="floating"
+              onClick={() =>
                 cartDispatch({ type: "DECREMENT_QUANTITY", payload: item })
-              }>
+              }
+            >
               <i className="fas fa-minus"></i>
             </button>
             <span>{quantity}</span>
@@ -48,8 +61,30 @@ const CartCard = ({ item }) => {
           </div>
         </div>
         <div className="btn-container-box">
-          <button className="btn btn-primary">MOVE TO WISHLIST</button>
-          <button className="btn btn-secondary">REMOVE</button>
+          <button
+            className="btn btn-primary"
+            onClick={() =>
+              cartDispatch({
+                type: "MOVE_TO_WISHLIST_FROM_CART",
+                payload: {
+                  ...item,
+                  quantity: 0,
+                  isWishListed: true,
+                  isAddedToCart: false,
+                },
+              })
+            }
+          >
+            MOVE TO WISHLIST
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() =>
+              cartDispatch({ type: "REMOVE_ITEM_FROM_CART", payload: item })
+            }
+          >
+            REMOVE
+          </button>
         </div>
       </div>
     </div>

@@ -11,13 +11,30 @@ const Card = ({ item }) => {
     image,
     priceDetails,
     inStock,
+    isAddedToCart,
   } = item;
+
+  const isWishListed  = cartItems.find(item => item?.isWishListed === true)
+  // console.log({isWishListed })
+
   return (
     <div className="card" id="card">
       <div className="thumbnail">
         <img src={image} alt="card" />
-        <button className="wish">
-          <i className="far fa-heart fa-2x"></i>
+        <button
+          className="wish"
+          onClick={() =>
+            cartDispatch({
+              type: "ADD_TO_WISHLIST",
+              payload: item ,
+            })
+          }
+        >
+          {isWishListed  ? (
+            <i className="fas fa-heart fa-2x wishListed"></i>
+          ) : (
+            <i className="far fa-heart fa-2x "></i>
+          )}
         </button>
         {!inStock && (
           <div className="overlay">
@@ -47,8 +64,8 @@ const Card = ({ item }) => {
           <span className="discount">({priceDetails.discount} OFF)</span>
         </span>
       </div>
-
-      {inStock ? (
+{/* here isaddedtocart tobe from cartiems arr */}
+      {inStock && !isAddedToCart ? (
         <button
           className="btn btn-primary"
           onClick={() =>
@@ -58,7 +75,7 @@ const Card = ({ item }) => {
             })
           }
         >
-          Add To Cart
+          Add To Cart 
         </button>
       ) : (
         <button className="btn btn-primary disabled" disabled>

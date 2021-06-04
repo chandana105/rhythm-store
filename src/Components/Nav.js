@@ -33,10 +33,7 @@ const Nav = () => {
       <Link to="/wishlist" className="avatar-badge-container cart">
         <span className="avatar avatar-large">
           <i className="far fa-heart"></i>
-        </span>
-        <span className="avatar-badge-icons-cart badge-avatar-large-icons cart badge-red">
-          1
-        </span>
+        </span>     
       </Link>
 
       <Link to="/cart" className="avatar-badge-container cart">

@@ -22,7 +22,7 @@ export default function ProductListing() {
     return productList;
   };
 
-  const sortedData = getSortedData([...data], sortBy);
+  const sortedData = getSortedData(data, sortBy);
 
   const getFilteredData = (
     sortedData,
