@@ -47,7 +47,7 @@ const Sidebar = () => {
               type="range"
               value={priceRange}
               min="0"
-              max="2000"
+              max="2050"
               onChange={(e) =>
                 productDispatch({
                   type: "PRICE_RANGE",

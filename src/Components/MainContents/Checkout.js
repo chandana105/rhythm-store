@@ -1,13 +1,26 @@
+import { useCart } from "../../Contexts/cart-context";
+import {
+  totalOriginalPrice,
+  totalItems,
+  totalDiscountOnOriginalPrice,
+  finalAmountToBePaid,
+} from "../../Utils/utils";
+
 const Checkout = () => {
+  const { cartItems } = useCart();
+  // const {priceDetails, discountedPrice} = cartItems
   return (
     <div className="checkout">
       <div className="card text">
         <h2>Price Details</h2>
         <div className="hr-line"></div>
         <div className="text-header">
-          <span className="card-title">Price (1 Item)</span>
+          <span className="card-title">
+            Price ({totalItems(cartItems)} Items)
+          </span>
           <span>
-            <i className="fas fa-rupee-sign"></i> 2,043
+            <i className="fas fa-rupee-sign"></i>{" "}
+            {totalOriginalPrice(cartItems)}
           </span>
         </div>
         <div className="hr-line"></div>
@@ -15,7 +28,8 @@ const Checkout = () => {
           <span className="card-title">Discount on MRP</span>
           <span className="text-color">
             <i className="fas fa-minus"></i>
-            <i className="fas fa-rupee-sign"></i> 1,022
+            <i className="fas fa-rupee-sign"></i>{" "}
+            {totalDiscountOnOriginalPrice(cartItems)}
           </span>
         </div>
         <div className="hr-line"></div>
@@ -30,7 +44,8 @@ const Checkout = () => {
           </span>
           <span className="total-amount">
             <b>
-              <i className="fas fa-rupee-sign"></i> 1,021
+              <i className="fas fa-rupee-sign"></i>{" "}
+              {finalAmountToBePaid(cartItems)}
             </b>
           </span>
         </div>

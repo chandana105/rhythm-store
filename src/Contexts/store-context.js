@@ -13,7 +13,7 @@ export const StoreProvider = ({ children }) => {
       sortBy: "Price: Low to High",
       showInventoryAll : true,
       showFastDelivery : false,
-      priceRange : 2000
+      priceRange : 2050
     }
   );
   return (

@@ -3,23 +3,23 @@ import Sidebar from "./Sidebar";
 import Main from "./Main";
 import { data } from "../Data";
 import { useStore } from "../Contexts/store-context";
+import { priceCal } from "../Utils/utils";
 
 export default function ProductListing() {
   const { sortBy, showInventoryAll, showFastDelivery, priceRange } = useStore();
 
   const getSortedData = (productList, sortBy) => {
+    const newProductList = productList.map((item) => ({
+      ...item,
+      discountedPrice: priceCal(item.priceDetails),
+    }));
+
     if (sortBy && sortBy === "Price: High to Low") {
-      return productList.sort(
-        (a, b) =>
-          b.priceDetails.discountedPrice - a.priceDetails.discountedPrice
-      );
+      return newProductList.sort((a, b) => b.discountedPrice - a.discountedPrice);
     } else if (sortBy && sortBy === "Price: Low to High") {
-      return productList.sort(
-        (a, b) =>
-          a.priceDetails.discountedPrice - b.priceDetails.discountedPrice
-      );
+      return newProductList.sort((a, b) => a.discountedPrice - b.discountedPrice);
     }
-    return productList;
+    return newProductList;
   };
 
   const sortedData = getSortedData(data, sortBy);
@@ -32,9 +32,8 @@ export default function ProductListing() {
       .filter(({ inStock }) => (showInventoryAll ? true : inStock))
       .filter(({ fastDelivery }) => (showFastDelivery ? fastDelivery : true))
       .filter(
-        ({ priceDetails }) =>
-          priceDetails.discountedPrice > 0 &&
-          priceDetails.discountedPrice <= priceRange
+        ({ discountedPrice }) =>
+          discountedPrice > 0 && discountedPrice <= priceRange
       );
   };
 

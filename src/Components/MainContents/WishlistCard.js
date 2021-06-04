@@ -1,5 +1,4 @@
 import { useCart } from "../../Contexts/cart-context";
-
 const WishlistCard = ({ item }) => {
   const { cartDispatch } = useCart();
   const {
@@ -7,6 +6,7 @@ const WishlistCard = ({ item }) => {
     name,
     image,
     priceDetails,
+    discountedPrice,
     inStock,
     isAddedToCart,
     isWishListed,
@@ -34,7 +34,7 @@ const WishlistCard = ({ item }) => {
         <h3 className="heading">{name}</h3>
         <span className="price">
           <span className="product-price">
-            <i className="fas fa-rupee-sign"></i> {priceDetails.discountedPrice}
+            <i className="fas fa-rupee-sign"></i> {discountedPrice}
           </span>
           <span className="price-strike">
             <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}

@@ -8,6 +8,7 @@ const Card = ({ item }) => {
     description,
     ratings,
     delivery,
+    discountedPrice,
     image,
     priceDetails,
     inStock,
@@ -56,7 +57,7 @@ const Card = ({ item }) => {
         </div>
         <span className="price">
           <span className="product-price">
-            <i className="fas fa-rupee-sign"></i> {priceDetails.discountedPrice}
+            <i className="fas fa-rupee-sign"></i> {discountedPrice}
           </span>
           <span className="price-strike">
             <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}

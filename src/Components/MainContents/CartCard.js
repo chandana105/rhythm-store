@@ -1,5 +1,4 @@
 import { useCart } from "../../Contexts/cart-context";
-
 const CartCard = ({ item }) => {
   const { cartDispatch } = useCart();
 
@@ -9,6 +8,7 @@ const CartCard = ({ item }) => {
     image,
     priceDetails,
     description,
+    discountedPrice,
     quantity,
     isAddedToCart,
     isWishListed,
@@ -25,7 +25,7 @@ const CartCard = ({ item }) => {
           <span>
             <b>
               <i className="fas fa-rupee-sign"></i>{" "}
-              {priceDetails.discountedPrice}
+              {discountedPrice}
             </b>
           </span>
         </div>
