@@ -249,7 +249,10 @@ width: 12rem;
   object-fit: contain;
 }
 
-
+.content .products .card .thumbnail button:focus
+ {
+  background: none;
+}
 
 
 

@@ -10,7 +10,7 @@ const CartItems = () => {
       <CartHeader />
       {cartItems.map(
         (item) =>
-          item.quantity !== 0 && item.isWishListed === false && (
+          item.quantity !== 0  && (
             <CartCard item={item} key={item.id} />
           )
       )}

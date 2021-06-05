@@ -8,7 +8,6 @@ import {
 
 const Checkout = () => {
   const { cartItems } = useCart();
-  // const {priceDetails, discountedPrice} = cartItems
   return (
     <div className="checkout">
       <div className="card text">

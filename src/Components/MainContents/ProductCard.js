@@ -1,7 +1,7 @@
 import { useCart } from "../../Contexts/cart-context";
 
 const Card = ({ item }) => {
-  const { cartItems, cartDispatch } = useCart();
+  const { wishList, cartDispatch } = useCart();
   const {
     id,
     name,
@@ -11,12 +11,10 @@ const Card = ({ item }) => {
     discountedPrice,
     image,
     priceDetails,
+    isWishListed,
     inStock,
     isAddedToCart,
   } = item;
-
-  const isWishListed  = cartItems.find(item => item?.isWishListed === true)
-  // console.log({isWishListed })
 
   return (
     <div className="card" id="card">
@@ -24,19 +22,25 @@ const Card = ({ item }) => {
         <img src={image} alt="card" />
         <button
           className="wish"
-          onClick={() =>
-            cartDispatch({
-              type: "ADD_TO_WISHLIST",
-              payload: item ,
-            })
-          }
+          onClick={() => {
+            !isWishListed
+              ? cartDispatch({
+                  type: "ADD_TO_WISHLIST",
+                  payload: item,
+                })
+              : cartDispatch({
+                  type: "REMOVE_ITEM_FROM_WISHLIST",
+                  payload: item,
+                });
+          }}
         >
-          {isWishListed  ? (
+          {isWishListed ? (
             <i className="fas fa-heart fa-2x wishListed"></i>
           ) : (
             <i className="far fa-heart fa-2x "></i>
           )}
         </button>
+
         {!inStock && (
           <div className="overlay">
             <span>OUT OF STOCK</span>
@@ -65,7 +69,7 @@ const Card = ({ item }) => {
           <span className="discount">({priceDetails.discount} OFF)</span>
         </span>
       </div>
-{/* here isaddedtocart tobe from cartiems arr */}
+      {/* here isaddedtocart tobe from cartiems arr */}
       {inStock && !isAddedToCart ? (
         <button
           className="btn btn-primary"
@@ -76,7 +80,7 @@ const Card = ({ item }) => {
             })
           }
         >
-          Add To Cart 
+          Add To Cart
         </button>
       ) : (
         <button className="btn btn-primary disabled" disabled>
