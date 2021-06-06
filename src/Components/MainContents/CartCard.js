@@ -1,7 +1,6 @@
 import { useCart } from "../../Contexts/cart-context";
 const CartCard = ({ item }) => {
-  const { cartDispatch } = useCart();
-
+  const {cartItems, cartDispatch } = useCart();
   const {
     id,
     name,
@@ -13,7 +12,8 @@ const CartCard = ({ item }) => {
     isAddedToCart,
     isWishListed,
   } = item;
-  // console.log(isAddedToCart);
+
+  
   return (
     <div className="card2 card-horizontal">
       <div className="thumbnail">
@@ -92,3 +92,22 @@ const CartCard = ({ item }) => {
 };
 
 export default CartCard;
+{/* <div className="product-quantity">
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                cartDispatch({ type: "DECREMENT_QUANTITY", payload: item })
+              }
+            >
+              <i className="fas fa-minus fa-sm"></i>
+            </button>
+            <span>{quantity}</span>
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                cartDispatch({ type: "INCREMENT_QUANTITY", payload: item })
+              }
+            >
+              <i className="fas fa-plus fa-sm"></i>
+            </button>
+          </div> */}

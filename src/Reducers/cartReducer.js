@@ -4,6 +4,11 @@ export const cartReducer = (state, action) => {
       return {
         ...state,
         cartItems: state.cartItems.concat({ ...action.payload }),
+        productData: state.productData.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, isAddedToCart: true }
+            : item
+        ),
       };
     case "INCREMENT_QUANTITY":
       return {
@@ -13,11 +18,32 @@ export const cartReducer = (state, action) => {
             ? { ...item, quantity: item.quantity + 1 }
             : { ...item }
         ),
+        productData: state.productData.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : { ...item }
+        ),
       };
     case "DECREMENT_QUANTITY":
+      if (action.payload.quantity === 1) {
+        return {
+          ...state,
+          cartItems: state.cartItems.filter((item) => item !== action.payload),
+          productData: state.productData.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, isAddedToCart: false, quantity: 1 }
+            : item
+        ),
+        }
+      }
       return {
         ...state,
         cartItems: state.cartItems.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : { ...item }
+        ),
+        productData: state.productData.map((item) =>
           item.id === action.payload.id
             ? { ...item, quantity: item.quantity - 1 }
             : { ...item }
@@ -27,6 +53,11 @@ export const cartReducer = (state, action) => {
       return {
         ...state,
         cartItems: state.cartItems.filter((item) => item !== action.payload),
+        productData: state.productData.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, isAddedToCart: false, quantity: 1 }
+            : item
+        ),
       };
 
     case "ADD_TO_WISHLIST":
@@ -64,8 +95,8 @@ export const cartReducer = (state, action) => {
         cartItems: getInCart(),
         wishList: getItemsInWishList(),
         productData: state.productData.map((item) =>
-        item.id === action.payload.id ? { ...item, isWishListed: true } : item
-      ),
+          item.id === action.payload.id ? { ...item, isWishListed: true } : item
+        ),
       };
 
     case "MOVE_TO_CART_FROM_WISHLIST":
@@ -90,7 +121,10 @@ export const cartReducer = (state, action) => {
           (item) => item.id !== action.payload.id
         ),
         productData: state.productData.map((item) =>
-        item.id === action.payload.id ? { ...item, isWishListed: false } : item)
+          item.id === action.payload.id
+            ? { ...item, isWishListed: false, isAddedToCart: true , quantity : 1 }
+            : item
+        ),
       };
 
     case "REMOVE_ITEM_FROM_WISHLIST":
@@ -100,11 +134,13 @@ export const cartReducer = (state, action) => {
           (item) => item.id !== action.payload.id
         ),
         productData: state.productData.map((item) =>
-        item.id === action.payload.id ? { ...item, isWishListed: false } : item)
+          item.id === action.payload.id
+            ? { ...item, isWishListed: false }
+            : item
+        ),
       };
 
     default:
       return state;
   }
 };
-

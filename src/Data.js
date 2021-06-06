@@ -19,7 +19,7 @@ export const data = [
       originalPrice: 999,
       discount: "22%  ",
     },
- 
+    quantity : 1,
     inStock: true,
     fastDelivery: true,
     isWishListed: false,
@@ -36,7 +36,7 @@ export const data = [
       originalPrice: 2300,
       discount: "13%  ",
     },
- 
+    quantity : 1,
     inStock: false,
     fastDelivery: false,
     isWishListed: false,
@@ -53,7 +53,7 @@ export const data = [
       originalPrice: 799,
       discount: "82%  ",
     },
- 
+    quantity : 1,
     inStock: true,
     fastDelivery: true,
     isWishListed: false,
@@ -70,7 +70,7 @@ export const data = [
       originalPrice: 320,
       discount: "3%  ",
     },
- 
+    quantity : 1,
     inStock: true,
     fastDelivery: false,
     isWishListed: false,
@@ -87,7 +87,7 @@ export const data = [
       originalPrice: 800,
       discount: "36%  ",
     },
- 
+    quantity : 1,
     inStock: true,
     fastDelivery: true,
     isWishListed: false,
@@ -104,7 +104,7 @@ export const data = [
       originalPrice: 599,
       discount: "25%  ",
     },
- 
+    quantity : 1,
     inStock: false,
     fastDelivery: true,
     isWishListed: false,

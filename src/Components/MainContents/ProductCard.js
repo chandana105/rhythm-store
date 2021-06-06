@@ -1,7 +1,7 @@
 import { useCart } from "../../Contexts/cart-context";
 
 const Card = ({ item }) => {
-  const { wishList, cartDispatch } = useCart();
+  const { cartItems,  cartDispatch } = useCart();
   const {
     id,
     name,
@@ -15,6 +15,21 @@ const Card = ({ item }) => {
     inStock,
     isAddedToCart,
   } = item;
+
+  const isItemInCart = (cartItems, productData) => {
+    return cartItems.some((items) => items.id === productData.id);
+  };
+
+  const itemInCart = isItemInCart(cartItems, item);
+  // console.log({itemInCart})
+
+  const itemInBoth = (cartItems, productData) => {
+    return cartItems.find((items) => items.id === productData.id);
+  };
+
+  const cartProduct = itemInBoth(cartItems, item);
+  // console.log({cartProduct})
+
 
   return (
     <div className="card" id="card">
@@ -69,26 +84,88 @@ const Card = ({ item }) => {
           <span className="discount">({priceDetails.discount} OFF)</span>
         </span>
       </div>
-      {/* here isaddedtocart tobe from cartiems arr */}
-      {inStock && !isAddedToCart ? (
+
+      {itemInCart  ? (
+        <div className="product-quantity">
+          <button
+            className="btn btn-primary"
+            onClick={() =>
+              cartDispatch({ type: "DECREMENT_QUANTITY", payload: cartProduct })
+            }
+          >
+            <i className="fas fa-minus fa-sm"></i>
+          </button>
+          <span>{cartProduct.quantity}</span>
+          <button
+            className="btn btn-primary"
+            onClick={() =>
+              cartDispatch({ type: "INCREMENT_QUANTITY", payload: cartProduct })
+            }
+          >
+            <i className="fas fa-plus fa-sm"></i>
+          </button>
+        </div>
+      ) :  inStock ?
         <button
           className="btn btn-primary"
           onClick={() =>
             cartDispatch({
               type: "ADD_TO_CART",
-              payload: { ...item, quantity: 1, isAddedToCart: true },
+              payload: { ...item, isAddedToCart: true },
             })
           }
         >
           Add To Cart
-        </button>
-      ) : (
+        </button> 
+       : (
         <button className="btn btn-primary disabled" disabled>
           Add To Cart
         </button>
-      )}
+      )
+      }
     </div>
   );
 };
 
 export default Card;
+
+// {inStock ? (
+//   !isAddedToCart ? (
+//     <button
+//       className="btn btn-primary"
+//       onClick={() =>
+//         cartDispatch({
+//           type: "ADD_TO_CART",
+//           payload: { ...item, isAddedToCart: true },
+//         })
+//       }
+//     >
+//       Add To Cart
+//     </button>
+//   ) : (
+//     <div className="product-quantity">
+//       <button
+//         className="btn btn-primary"
+//         onClick={() =>
+//           cartDispatch({ type: "DECREMENT_QUANTITY", payload: item })
+//         }
+//       >
+//         <i className="fas fa-minus fa-sm"></i>
+//       </button>
+//       <span>{quantity}</span>
+//       <button
+//         className="btn btn-primary"
+//         onClick={() =>
+//           cartDispatch({ type: "INCREMENT_QUANTITY", payload: item })
+//         }
+//       >
+//         <i className="fas fa-plus fa-sm"></i>
+//       </button>
+//     </div>
+//   )
+
+// ) : (
+//   <button className="btn btn-primary disabled" disabled>
+//     Add To Cart
+//   </button>
+// )}
