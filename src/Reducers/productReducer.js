@@ -21,6 +21,11 @@ export const productReducer = (state, action) => {
         ...state,
         priceRange : action.payload
       }
+    case "SEARCH_BY_PRODUCT_TITLE" :
+      return {
+        ...state,
+        searchBy : action.payload
+      }  
     case "CLEAR_ALL_FILTERS":
       return {
         ...state,

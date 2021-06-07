@@ -5,7 +5,6 @@ import { useCart} from '../Contexts/cart-context'
 
 const Wishlist = () => {
   const {wishList} = useCart();
-  console.log({wishList})
 
   return (
     <div className="container" id="wishlist">

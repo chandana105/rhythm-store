@@ -7,7 +7,7 @@ import { useStore } from "../Contexts/store-context";
 import { priceCal } from "../Utils/utils";
 
 export default function ProductListing() {
-  const { sortBy, showInventoryAll, showFastDelivery, priceRange } = useStore();
+  const { sortBy, showInventoryAll, showFastDelivery, priceRange , searchBy } = useStore();
   const { productData } = useCart();
   const getSortedData = (productList, sortBy) => {
     const newProductList = productList.map((item) => ({
@@ -31,7 +31,7 @@ export default function ProductListing() {
 
   const getFilteredData = (
     sortedData,
-    { showInventoryAll, showFastDelivery, priceRange }
+    { showInventoryAll, showFastDelivery, priceRange , searchBy }
   ) => {
     return sortedData
       .filter(({ inStock }) => (showInventoryAll ? true : inStock))
@@ -39,13 +39,17 @@ export default function ProductListing() {
       .filter(
         ({ discountedPrice }) =>
           discountedPrice > 0 && discountedPrice <= priceRange
-      );
+      )
+      .filter(({name}) => name.toLowerCase().includes(searchBy.toLowerCase()) )
+      // .filter(({name}) => name.toLowerCase().startsWith(searchBy.toLowerCase()) )
+
   };
 
   const filteredData = getFilteredData(sortedData, {
     showInventoryAll,
     showFastDelivery,
     priceRange,
+    searchBy
   });
 
   return (

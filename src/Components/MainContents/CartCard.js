@@ -92,22 +92,3 @@ const CartCard = ({ item }) => {
 };
 
 export default CartCard;
-{/* <div className="product-quantity">
-            <button
-              className="btn btn-primary"
-              onClick={() =>
-                cartDispatch({ type: "DECREMENT_QUANTITY", payload: item })
-              }
-            >
-              <i className="fas fa-minus fa-sm"></i>
-            </button>
-            <span>{quantity}</span>
-            <button
-              className="btn btn-primary"
-              onClick={() =>
-                cartDispatch({ type: "INCREMENT_QUANTITY", payload: item })
-              }
-            >
-              <i className="fas fa-plus fa-sm"></i>
-            </button>
-          </div> */}

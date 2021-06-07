@@ -3,11 +3,12 @@ import music from "../images/music.svg";
 import avatar from "../images/avatar.jpg";
 // import person from '../images/person.png'
 import { useCart } from "../Contexts/cart-context";
-import {totalItems} from '../Utils/utils'
-
+import { useStore } from "../Contexts/store-context";
+import { totalItems } from "../Utils/utils";
 
 const Nav = () => {
   const { cartItems } = useCart();
+  const { searchBy, productDispatch } = useStore();
   return (
     <nav className="header" id="navbar">
       <Link to="/" className="logo">
@@ -21,7 +22,18 @@ const Nav = () => {
         <div className="search-box search">
           <i className="fas fa-search"></i>
           <span>
-            <input type="text" name="" placeholder="Search for Products" />
+            <input
+              type="text"
+              name=""
+              placeholder="Search for Products"
+              value={searchBy}
+              onChange={(e) =>
+                productDispatch({
+                  type: "SEARCH_BY_PRODUCT_TITLE",
+                  payload: e.target.value,
+                })
+              }
+            />
           </span>
         </div>
       </div>
@@ -33,7 +45,7 @@ const Nav = () => {
       <Link to="/wishlist" className="avatar-badge-container cart">
         <span className="avatar avatar-large">
           <i className="far fa-heart"></i>
-        </span>     
+        </span>
       </Link>
 
       <Link to="/cart" className="avatar-badge-container cart">
