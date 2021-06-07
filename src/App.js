@@ -8,10 +8,13 @@ import EmptyCart from "./Components/MainContents/EmptyCart";
 
 import { useCart } from "./Contexts/cart-context";
 import { totalItems } from "./Utils/utils";
+import { ToastContainer } from "react-toastify";
+
 
 function App() {
   const { cartItems, wishList } = useCart();
   return (
+    <>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/product-listing" element={<ProductListing />} />
@@ -26,6 +29,8 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
       )}
     </Routes>
+    <ToastContainer />
+    </>
   );
 }
 

@@ -40,6 +40,14 @@ body {
   width: 2.5rem;
 }
 
+#navbar .docs{
+  font-weight: bolder
+}
+
+#navbar nav Link:hover{
+  color : var(--primary-color)
+}
+
 /* sidebar */
 #side-bar .checkbox {
   width: 1rem;

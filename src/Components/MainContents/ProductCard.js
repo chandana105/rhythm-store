@@ -1,7 +1,7 @@
 import { useCart } from "../../Contexts/cart-context";
 
 const Card = ({ item }) => {
-  const { cartItems,  cartDispatch } = useCart();
+  const { cartItems, cartDispatch } = useCart();
   const {
     id,
     name,
@@ -29,7 +29,6 @@ const Card = ({ item }) => {
 
   const cartProduct = itemInBoth(cartItems, item);
   // console.log({cartProduct})
-
 
   return (
     <div className="card" id="card">
@@ -85,7 +84,7 @@ const Card = ({ item }) => {
         </span>
       </div>
 
-      {itemInCart  ? (
+      {itemInCart ? (
         <div className="product-quantity">
           <button
             className="btn btn-primary"
@@ -105,24 +104,28 @@ const Card = ({ item }) => {
             <i className="fas fa-plus fa-sm"></i>
           </button>
         </div>
-      ) :  inStock ?
+      ) : inStock ? (
         <button
           className="btn btn-primary"
-          onClick={() =>
+          onClick={() => {
             cartDispatch({
               type: "ADD_TO_CART",
               payload: { ...item, isAddedToCart: true },
-            })
-          }
+            });
+            if (isAddedToCart)
+            return cartDispatch({
+              type: "SHOW_TOAST",
+              payload: { text: "ADDED TO CART", type: "info" },
+            });
+          }}
         >
           Add To Cart
-        </button> 
-       : (
+        </button>
+      ) : (
         <button className="btn btn-primary disabled" disabled>
           Add To Cart
         </button>
-      )
-      }
+      )}
     </div>
   );
 };

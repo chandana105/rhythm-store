@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import music from "../images/music.svg";
 import avatar from "../images/avatar.jpg";
 // import person from '../images/person.png'
@@ -9,14 +9,19 @@ import { totalItems } from "../Utils/utils";
 const Nav = () => {
   const { cartItems } = useCart();
   const { searchBy, productDispatch } = useStore();
+
+  const activeStyle = {
+    color: "#000",
+    fontWeight: "bold",
+  };
   return (
     <nav className="header" id="navbar">
-      <Link to="/" className="logo">
+      <NavLink to="/" end activeStyle={activeStyle} className="logo">
         <img width="80" src={music} alt="logo" />
         <span>
           <strong> RHYTHM STORE</strong>
         </span>
-      </Link>
+      </NavLink>
 
       <div className="search-container">
         <div className="search-box search">
@@ -38,17 +43,25 @@ const Nav = () => {
         </div>
       </div>
 
-      <Link to="/product-listing" className="docs active">
+      <NavLink to="/product-listing" activeStyle={activeStyle}>
         Products
-      </Link>
+      </NavLink>
 
-      <Link to="/wishlist" className="avatar-badge-container cart">
+      <NavLink
+        to="/wishlist"
+        activeStyle={activeStyle}
+        className="avatar-badge-container cart"
+      >
         <span className="avatar avatar-large">
-          <i className="far fa-heart"></i>
+          <i className="fas fa-heart"></i>
         </span>
-      </Link>
+      </NavLink>
 
-      <Link to="/cart" className="avatar-badge-container cart">
+      <NavLink
+        to="/cart"
+        activeStyle={activeStyle}
+        className="avatar-badge-container cart"
+      >
         <span className="avatar avatar-large">
           <i className="fas fa-shopping-cart "></i>
         </span>
@@ -57,7 +70,7 @@ const Nav = () => {
             {totalItems(cartItems)}
           </span>
         )}
-      </Link>
+      </NavLink>
 
       <Link to="/">
         <span className="avatar avatar-small">

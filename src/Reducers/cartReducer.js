@@ -140,6 +140,12 @@ export const cartReducer = (state, action) => {
         ),
       };
 
+      case "SHOW_TOAST" : 
+      return {
+        ...state,
+        toastValue : action.payload
+      }
+
     default:
       return state;
   }
