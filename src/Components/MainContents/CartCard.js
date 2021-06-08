@@ -1,6 +1,6 @@
 import { useCart } from "../../Contexts/cart-context";
 const CartCard = ({ item }) => {
-  const {cartItems, cartDispatch } = useCart();
+  const { cartItems, cartDispatch } = useCart();
   const {
     id,
     name,
@@ -13,33 +13,28 @@ const CartCard = ({ item }) => {
     isWishListed,
   } = item;
 
-  
   return (
     <div className="card2 card-horizontal">
       <div className="thumbnail">
         <img src={image} alt="horizontal-img" />
       </div>
       <div className="text">
-        <div className="text-header">
-          <span className="card-title">{name}</span>
-          <span>
-            <b>
-              <i className="fas fa-rupee-sign"></i>{" "}
-              {discountedPrice}
-            </b>
+        <span className="card-title">{name}</span>
+        <p>{description}</p>
+
+        <div>
+          <b>Price : </b>
+          <b>
+            <i className="fas fa-rupee-sign"></i> {discountedPrice}
+          </b>
+          <span className="price-strike">
+            <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}
           </span>
+          <span className="discount">({priceDetails.discount} OFF)</span>
         </div>
-        <div className="text-header">
-          <p>{description}</p>
-          <div className="text-header-right">
-            <span className="price-strike">
-              <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}
-            </span>
-            <span className="discount">({priceDetails.discount} OFF)</span>
-          </div>
-        </div>
+
         <div className="quantity">
-          <span>Quantity : </span>
+          <b>Quantity : </b>
           <div className="quantity-buttons">
             <button
               className="floating"
@@ -49,7 +44,7 @@ const CartCard = ({ item }) => {
             >
               <i className="fas fa-minus"></i>
             </button>
-            <span>{quantity}</span>
+            <b>{quantity}</b>
             <button
               className="floating"
               onClick={() =>
@@ -85,6 +80,14 @@ const CartCard = ({ item }) => {
           >
             REMOVE
           </button>
+        </div>
+        <div className="subtotal">
+          SubTotal :{" "}
+          &nbsp;
+
+          <b>
+            <i className="fas fa-rupee-sign"></i> {discountedPrice * quantity}
+          </b>
         </div>
       </div>
     </div>

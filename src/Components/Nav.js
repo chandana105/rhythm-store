@@ -11,7 +11,7 @@ const Nav = () => {
   const { searchBy, productDispatch } = useStore();
 
   const activeStyle = {
-    color: "#000",
+    background: 'var(--secondary-color)',
     fontWeight: "bold",
   };
   return (
@@ -43,7 +43,7 @@ const Nav = () => {
         </div>
       </div>
 
-      <NavLink to="/product-listing" activeStyle={activeStyle}>
+      <NavLink to="/product-listing" activeStyle={activeStyle} className="products">
         Products
       </NavLink>
 

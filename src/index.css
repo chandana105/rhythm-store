@@ -1,3 +1,5 @@
+/* cart nav ki paddign set krni , navlink , understandign of btn changin, code refacroiing, ecomm ris(reverse) pic , floatign btn, procutlistign pg, categories pg*/
+
 @import url("https://rhythmui.netlify.app/styles.css");
 body {
   margin: 0;
@@ -40,8 +42,8 @@ body {
   width: 2.5rem;
 }
 
-#navbar .docs{
-  font-weight: bolder
+#navbar .products {
+  font-weight: bolder;
 }
 
 /* sidebar */
@@ -213,7 +215,7 @@ body {
   position: relative;
   top: 5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   /* margin: auto; */
@@ -226,6 +228,7 @@ body {
   padding: 1rem;
   justify-content: space-between;
   height: 85vh;
+  margin-right: 2.54rem
 }
 
 #wishlist .wishlistItems .card {
@@ -267,12 +270,11 @@ body {
 }
 
 .btn-primary:hover {
-  background: #DDD6FE;
+  background: #ddd6fe;
   color: #111827;
 }
 
 /* card */
-
 
 #card .btn {
   width: 100%;
@@ -291,18 +293,17 @@ body {
   width: 100%;
 }
 
-#card .product-quantity .btn{
-  width:  max-content;
+#card .product-quantity .btn {
+  width: max-content;
 }
 
-#card .product-quantity span{
+#card .product-quantity span {
   /* width: 100%; */
   /* padding: 0.7rem 1.5rem; */
   /* text-align: center; */
   font-size: larger;
   /* background: var(--secondary-color); */
 }
-
 
 #card .disabled,
 #wishlist .wishlistItems #card .disabled {
@@ -326,7 +327,7 @@ body {
   padding-left: 0.4rem;
 }
 
-#card .text .quantity-buttons .btn{
+#card .text .quantity-buttons .btn {
   width: max-content;
 }
 
@@ -368,7 +369,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem;
-  border: 0.01rem solid var(--primary-color);
+  border: 1px solid var(--card-border-color);
   margin-bottom: 2rem;
   box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%);
   border-radius: 0.5rem;
@@ -387,20 +388,23 @@ body {
   padding: 0.5rem 1rem;
 }
 
+#cart .card-horizontal .thumbnail{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ height: 100%;
+  /* border: 1px solid #ccc; */
+}
+
 #cart .card-horizontal .thumbnail img {
-  max-width: 11rem;
-}
-
-#cart .card-horizontal .text .text-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#cart .card-horizontal .text .text-header-right {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  width: 10rem;
+  /* max-width: 100%; */
+    /* max-height: 100%; */
+    /* max-height: 70%; */
+    /* max-width: 70%; */
+    /* border-radius: 0.5rem; */
+    object-fit: contain;
+    /* background-size: cover; */
 }
 
 #cart .floating {
@@ -437,13 +441,9 @@ body {
   /* text-align: center; */
 }
 
-#cart .card-horizontal .quantity-buttons span {
-  margin: auto;
-}
-
 #cart .text .btn-container-box {
   display: flex;
-  margin-top: 2.7rem;
+  margin-top: 0.4rem;
 }
 
 #cart .text .floating {
@@ -465,20 +465,24 @@ body {
 #cart .thumbnail button:hover,
 #cart .text button:hover,
 #cart .card-horizontal .btn-primary:hover {
-  background: #A78BFA;
+  background: #a78bfa;
 }
 
-#cart .card-horizontal .btn-secondary:hover{
-  background: #DDD6FE;
-}
-
-#cart .text .btn-container-box .btn-primary {
-  /* width: 50%; */
+#cart .card-horizontal .btn-secondary:hover {
+  background: #ddd6fe;
 }
 
 #cart .text .btn-container-box .btn-secondary {
   margin-left: 0.5rem;
-  /* width: 50%; */
+}
+
+#cart .text .subtotal {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: var(--secondary-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 #cart .checkout .text {

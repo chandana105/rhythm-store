@@ -32,7 +32,7 @@ export const productReducer = (state, action) => {
         sortBy: "Price: Low to High",
         showInventoryAll: false,
         showFastDelivery: false,
-        priceRange : 2000
+        priceRange : 2050
 
       };
     default:
