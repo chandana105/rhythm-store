@@ -1,7 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
-import music from "../images/music.svg";
-import avatar from "../images/avatar.jpg";
-// import person from '../images/person.png'
+import music from "../assets/images/music.svg";
+import avatar from "../assets/images/avatar.jpg";
+// import person from '../assets/images/person.png'
 import { useCart } from "../Contexts/cart-context";
 import { useStore } from "../Contexts/store-context";
 import { totalItems } from "../Utils/utils";
@@ -11,8 +11,8 @@ const Nav = () => {
   const { searchBy, productDispatch } = useStore();
 
   const activeStyle = {
-    background: 'var(--secondary-color)',
-    fontWeight: "bold",
+    color: "#6D28D9 ",
+    // fontWeight: "bold",
   };
   return (
     <nav className="header" id="navbar">
@@ -50,17 +50,18 @@ const Nav = () => {
       <NavLink
         to="/wishlist"
         activeStyle={activeStyle}
-        className="avatar-badge-container cart"
+        className="avatar-badge-container cart tooltip"
       >
         <span className="avatar avatar-large">
           <i className="fas fa-heart"></i>
         </span>
+        <span className="tooltiptext">Wishlist</span>
       </NavLink>
 
       <NavLink
         to="/cart"
         activeStyle={activeStyle}
-        className="avatar-badge-container cart"
+        className="avatar-badge-container cart tooltip"
       >
         <span className="avatar avatar-large">
           <i className="fas fa-shopping-cart "></i>
@@ -70,14 +71,18 @@ const Nav = () => {
             {totalItems(cartItems)}
           </span>
         )}
+        <span className="tooltiptext">Cart</span>
+
       </NavLink>
 
-      <Link to="/">
+      <Link to="/" className="tooltip">
         <span className="avatar avatar-small">
           {/* <img src={person} alt="avatar-sm" 
           /> */}
           <img src={avatar} alt="avatar-sm" />
         </span>
+        <span className="tooltiptext">Sign In</span>
+
       </Link>
     </nav>
   );

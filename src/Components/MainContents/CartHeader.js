@@ -7,8 +7,8 @@ const CartHeader = () => {
 
   return (
     <div className="side-bar-box">
-      <span>My Cart <b>({totalItems(cartItems)} Items</b>)</span>
-      <span>Total : <b>Rs. {totalPrice(cartItems)}</b></span>
+      <span><b>My Cart ({totalItems(cartItems)} Items</b>)</span>
+      <span><b>Total : Rs. {totalPrice(cartItems)}</b></span>
     </div>
   );
 };

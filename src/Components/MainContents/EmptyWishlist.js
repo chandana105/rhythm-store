@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import wishlist from "../../images/wishlist.svg";
+import wishlist from "../../assets/images/wishlist.svg";
 import Navbar from "../Nav";
 
 const EmptyWishlist = () => {

@@ -1,16 +1,16 @@
-import guitar from "./images/guitar.jpeg";
-import harmonium from "./images/harmonium.jpeg";
-import speakers from "./images/speakers.jpeg";
-import mike from "./images/mike.jpeg";
-import keyboardbook from "./images/keyboardbook.jpeg";
-import ARbook from "./images/ARbook.jpeg";
+import guitar from "./assets/images/guitar.jpeg";
+import harmonium from "./assets/images/harmonium.jpeg";
+import speakers from "./assets/images/speakers.jpeg";
+import mike from "./assets/images/mike.jpeg";
+import keyboardbook from "./assets/images/keyboardbook.jpeg";
+import ARbook from "./assets/images/ARbook.jpeg";
 
 import { v4 as uuidv4 } from "uuid";
 
 export const data = [
   {
     id: uuidv4(),
-    name: "Kamini Enterprise Amazing Guitar",
+    name: "Silver Enterprise Amazing Guitar",
     description: `4-String 24'' Guitar For Kids, Brown`,
     ratings: 4,
     delivery: "Fast Delivery",

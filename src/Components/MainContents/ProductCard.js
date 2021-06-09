@@ -21,14 +21,12 @@ const Card = ({ item }) => {
   };
 
   const itemInCart = isItemInCart(cartItems, item);
-  // console.log({itemInCart})
 
   const itemInBoth = (cartItems, productData) => {
     return cartItems.find((items) => items.id === productData.id);
   };
 
   const cartProduct = itemInBoth(cartItems, item);
-  // console.log({cartProduct})
 
   return (
     <div className="card" id="card">
@@ -83,7 +81,7 @@ const Card = ({ item }) => {
           <span className="discount">({priceDetails.discount} OFF)</span>
         </span>
       </div>
-
+      {/* item in cart milgyi ki vo cart mein bhi hai product mein bhi hai, toh ab phir any operation + or - ll be done on that item isliye vohi item find ki and usko dispatchkrdiay na ki item cumng as props */}
       {itemInCart ? (
         <div className="product-quantity">
           <button
@@ -113,10 +111,10 @@ const Card = ({ item }) => {
               payload: { ...item, isAddedToCart: true },
             });
             if (isAddedToCart)
-            return cartDispatch({
-              type: "SHOW_TOAST",
-              payload: { text: "ADDED TO CART", type: "info" },
-            });
+              return cartDispatch({
+                type: "SHOW_TOAST",
+                payload: { text: "ADDED TO CART", type: "info" },
+              });
           }}
         >
           Add To Cart
@@ -131,4 +129,3 @@ const Card = ({ item }) => {
 };
 
 export default Card;
-

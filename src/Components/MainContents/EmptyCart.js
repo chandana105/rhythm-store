@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import cart from "../../images/cart.svg";
+import cart from "../../assets/images/cart.svg";
 import Navbar from "../Nav";
 
 const EmptyCart = () => {

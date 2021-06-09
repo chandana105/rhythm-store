@@ -1,4 +1,4 @@
-/* cart nav ki paddign set krni , navlink , understandign of btn changin, code refacroiing, ecomm ris(reverse) pic , floatign btn, procutlistign pg, categories pg*/
+/* understandign of btn changin, code refacroiing, ecomm ris(reverse) pic , floatign btn, procutlistign pg, categories pg*/
 
 @import url("https://rhythmui.netlify.app/styles.css");
 body {
@@ -9,14 +9,52 @@ body {
 
 #navbar .search-box {
   width: 15rem;
+  cursor: pointer;
 }
 
 #navbar .search-box span input {
   width: 12rem;
+  cursor: pointer;
+
+}
+/* tooltip */
+#navbar .tooltip{
+  position: relative;
+  display: inline-block;
+}
+
+#navbar .tooltip .tooltiptext{
+  visibility: hidden;
+  width: 120px;
+  /* background-color: var(--primary-color); */
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 66%;
+  left: 50%;
+  margin-left: -60px;
+  
+  /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#navbar .tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1; 
 }
 
 #navbar .avatar-large {
   width: 3rem;
+  height: 3.2rem;
+}
+
+#navbar .avatar-large:hover , #navbar .products:hover {
+  color: #6D28D9 ;
+    font-weight: "bold",
 }
 
 #navbar .cart .badge-avatar-large-icons {
@@ -28,7 +66,7 @@ body {
 
 #navbar .avatar-badge-icons-cart {
   position: absolute;
-  top: 2.3rem;
+  top: 0.9rem;
   right: 0.7rem;
 }
 
@@ -44,6 +82,7 @@ body {
 
 #navbar .products {
   font-weight: bolder;
+  border-bottom: none;
 }
 
 /* sidebar */
@@ -178,7 +217,7 @@ body {
 }
 
 .content .search-box select {
-  background: url("./images/dropdown.svg") no-repeat right;
+  background: url("./assets/images/dropdown.svg") no-repeat right;
   -webkit-appearance: none;
 }
 
