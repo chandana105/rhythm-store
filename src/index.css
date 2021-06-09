@@ -1,4 +1,4 @@
-/* understandign of btn changin, code refacroiing, ecomm ris(reverse) pic , floatign btn, procutlistign pg, categories pg*/
+/*   ecomm ris(reverse) pic , floatign btn, procutid pg, categories pg*/
 
 @import url("https://rhythmui.netlify.app/styles.css");
 body {
@@ -14,16 +14,15 @@ body {
 
 #navbar .search-box span input {
   width: 12rem;
-  cursor: pointer;
-
 }
+
 /* tooltip */
-#navbar .tooltip{
+#navbar .tooltip {
   position: relative;
   display: inline-block;
 }
 
-#navbar .tooltip .tooltiptext{
+#navbar .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
   /* background-color: var(--primary-color); */
@@ -36,7 +35,7 @@ body {
   top: 66%;
   left: 50%;
   margin-left: -60px;
-  
+
   /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
   opacity: 0;
   transition: opacity 1s;
@@ -44,7 +43,7 @@ body {
 
 #navbar .tooltip:hover .tooltiptext {
   visibility: visible;
-  opacity: 1; 
+  opacity: 1;
 }
 
 #navbar .avatar-large {
@@ -52,9 +51,10 @@ body {
   height: 3.2rem;
 }
 
-#navbar .avatar-large:hover , #navbar .products:hover {
-  color: #6D28D9 ;
-    font-weight: "bold",
+#navbar .avatar-large:hover,
+#navbar .products:hover {
+  color: #6d28d9;
+  font-weight: "bold";
 }
 
 #navbar .cart .badge-avatar-large-icons {
@@ -267,7 +267,7 @@ body {
   padding: 1rem;
   justify-content: space-between;
   height: 85vh;
-  margin-right: 2.54rem
+  margin-right: 2.54rem;
 }
 
 #wishlist .wishlistItems .card {
@@ -324,6 +324,12 @@ body {
   color: #a78bfa;
 }
 
+#card .price-strike,
+.card-horizontal .price-strike {
+  font-weight: 550;
+  text-decoration-style: none;
+}
+
 #card .product-quantity {
   display: flex;
   flex-direction: row;
@@ -359,7 +365,7 @@ body {
   padding: 0rem;
 }
 
-#card .text .rating {
+#card .text .rating  {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -371,10 +377,15 @@ body {
 }
 
 /* Cart */
-#cart .content {
+#cart .content,
+.product-detail .content {
   grid-column: 1 / -1;
   padding-left: 0rem;
   margin: auto;
+}
+
+.product-detail .content {
+  margin: 0;
 }
 
 #cart main {
@@ -386,11 +397,9 @@ body {
 }
 
 #cart .cartItems {
-  /* width: 72%; */
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  /* border: 1px solid #fff; */
 }
 
 #cart .checkout {
@@ -427,24 +436,80 @@ body {
   padding: 0.5rem 1rem;
 }
 
-#cart .card-horizontal .thumbnail{
+#cart #product .card-horizontal .text{
+  padding: 0.2rem;
+  padding-left: 2rem;
+  width: 100%;
+ height: 100%; 
+}
+
+
+
+#cart .card-horizontal .thumbnail,
+#cart #product .card-horizontal .thumbnail {
   display: flex;
   justify-content: center;
   align-items: center;
- height: 100%;
+  height: 100%;
   /* border: 1px solid #ccc; */
 }
 
-#cart .card-horizontal .thumbnail img {
-  width: 10rem;
-  /* max-width: 100%; */
-    /* max-height: 100%; */
-    /* max-height: 70%; */
-    /* max-width: 70%; */
-    /* border-radius: 0.5rem; */
-    object-fit: contain;
-    /* background-size: cover; */
+#cart #product .card-horizontal .thumbnail {
+  width: 30rem;
+  position: relative;
 }
+
+#cart #product .card-horizontal .wish{
+  top: 0.2rem;
+  right: 0rem;
+  left: 16rem;
+  cursor: pointer;
+  background: none;
+}
+
+#cart #product .card-horizontal .wish:hover {
+  color: #a78bfa;
+}
+
+#cart #product .card-horizontal .thumbnail img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+#cart #product .card-horizontal .text {
+  margin-left : 2rem
+}
+
+#cart #product .card-horizontal .text .rating{
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.3rem 0;
+}
+
+#cart #product .card-horizontal .text .highlights{
+  display: flex;
+}
+
+#cart #product .card-horizontal .text .highlights ul{
+  padding: 0rem;
+  padding-left: 1.9rem
+}
+
+#cart #product .card-horizontal .text .highlights ul > li{
+  padding: 0rem;
+  list-style-type: disc;
+  padding-bottom: 0.2rem;
+
+}
+
+
+#cart .card-horizontal .thumbnail img  {
+  width: 10rem;
+  object-fit: contain;
+}
+
 
 #cart .floating {
   position: relative;
@@ -505,6 +570,10 @@ body {
 #cart .text button:hover,
 #cart .card-horizontal .btn-primary:hover {
   background: #a78bfa;
+}
+
+#cart #product .card-horizontal .btn-primary:hover{
+  background: #ddd6fe ;
 }
 
 #cart .card-horizontal .btn-secondary:hover {

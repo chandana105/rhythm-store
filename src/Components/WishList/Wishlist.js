@@ -1,7 +1,7 @@
-import Navbar from "../Components/Nav";
-import WishlistCard from "./MainContents/WishlistCard";
-import WishlistHeader from "./MainContents/WishlistHeader";
-import { useCart} from '../Contexts/cart-context'
+import Navbar from "../Nav";
+import WishlistCard from "./WishlistCard";
+import WishlistHeader from "./WishlistHeader";
+import { useCart} from '../../Contexts/cart-context'
 
 const Wishlist = () => {
   const {wishList} = useCart();

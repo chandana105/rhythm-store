@@ -1,4 +1,4 @@
-import { useStore } from "../Contexts/store-context";
+import { useStore } from "../../Contexts/store-context";
 
 const Sidebar = () => {
   const { showInventoryAll, showFastDelivery, productDispatch, priceRange } =

@@ -1,5 +1,5 @@
 import { useCart } from "../../Contexts/cart-context";
-
+import {Link} from 'react-router-dom'
 const Card = ({ item }) => {
   const { cartItems, cartDispatch } = useCart();
   const {
@@ -31,7 +31,9 @@ const Card = ({ item }) => {
   return (
     <div className="card" id="card">
       <div className="thumbnail">
+        <Link to="/products">
         <img src={image} alt="card" />
+        </Link>
         <button
           className="wish"
           onClick={() => {
@@ -76,7 +78,7 @@ const Card = ({ item }) => {
             <i className="fas fa-rupee-sign"></i> {discountedPrice}
           </span>
           <span className="price-strike">
-            <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}
+          &#8377; {priceDetails.originalPrice}
           </span>
           <span className="discount">({priceDetails.discount} OFF)</span>
         </span>
@@ -110,11 +112,6 @@ const Card = ({ item }) => {
               type: "ADD_TO_CART",
               payload: { ...item, isAddedToCart: true },
             });
-            if (isAddedToCart)
-              return cartDispatch({
-                type: "SHOW_TOAST",
-                payload: { text: "ADDED TO CART", type: "info" },
-              });
           }}
         >
           Add To Cart

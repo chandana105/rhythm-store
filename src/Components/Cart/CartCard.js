@@ -24,11 +24,11 @@ const CartCard = ({ item }) => {
 
         <div>
           <b>Price : </b>
-          <b>
-            <i className="fas fa-rupee-sign"></i> {discountedPrice}
+          <b style={{fontSize : "1.15rem"}}>
+          &#8377; {discountedPrice}
           </b>
           <span className="price-strike">
-            <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}
+          &#8377; {priceDetails.originalPrice}
           </span>
           <span className="discount">({priceDetails.discount} OFF)</span>
         </div>

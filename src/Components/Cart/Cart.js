@@ -1,6 +1,6 @@
-import Checkout from "./MainContents/Checkout";
-import CartItems from "./MainContents/CartItems";
-import Navbar from "./Nav";
+import Checkout from "./Checkout";
+import CartItems from "./CartItems";
+import Navbar from "../Nav";
 
 
 const Cart = () => {

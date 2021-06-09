@@ -1,10 +1,9 @@
-import Navbar from "./Nav";
+import Navbar from "../Nav";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
-// import { data } from "../Data";
-import { useCart } from "../Contexts/cart-context";
-import { useStore } from "../Contexts/store-context";
-import { priceCal } from "../Utils/utils";
+import { useCart } from "../../Contexts/cart-context";
+import { useStore } from "../../Contexts/store-context";
+import { priceCal } from "../../Utils/utils";
 
 export default function ProductListing() {
   const { sortBy, showInventoryAll, showFastDelivery, priceRange , searchBy } = useStore();

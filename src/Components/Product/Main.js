@@ -1,5 +1,5 @@
-import ProductCard from "./MainContents/ProductCard";
-import { useStore } from "../Contexts/store-context";
+import ProductCard from "./ProductCard";
+import { useStore } from "../../Contexts/store-context";
 
 const Main = ({ filteredData }) => {
   const { sortBy, productDispatch } = useStore();
