@@ -1,21 +1,16 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../../Contexts/cart-context";
+import { priceCal } from "../../Utils/utils";
+
 const WishlistCard = ({ item }) => {
   const { cartDispatch } = useCart();
-  const {
-    id,
-    name,
-    image,
-    priceDetails,
-    discountedPrice,
-    inStock,
-    isAddedToCart,
-    isWishListed,
-    quantity,
-  } = item;
+  const { id, name, image, priceDetails, inStock } = item;
   return (
     <div className="card " id="card">
       <div className="thumbnail">
-        <img src={image} alt="card" />
+        <Link to={`/products/${id}`}>
+          <img src={image} alt="card" />
+        </Link>
         <button
           className="close"
           onClick={() =>
@@ -34,7 +29,7 @@ const WishlistCard = ({ item }) => {
         <h3 className="heading">{name}</h3>
         <span className="price">
           <span className="product-price">
-            <i className="fas fa-rupee-sign"></i> {discountedPrice}
+            <i className="fas fa-rupee-sign"></i> {priceCal(priceDetails)}
           </span>
           <span className="price-strike">
             <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}

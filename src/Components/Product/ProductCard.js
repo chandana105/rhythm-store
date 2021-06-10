@@ -1,5 +1,7 @@
 import { useCart } from "../../Contexts/cart-context";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import {trimStr} from '../../Utils/utils'
+
 const Card = ({ item }) => {
   const { cartItems, cartDispatch } = useCart();
   const {
@@ -13,7 +15,6 @@ const Card = ({ item }) => {
     priceDetails,
     isWishListed,
     inStock,
-    isAddedToCart,
   } = item;
 
   const isItemInCart = (cartItems, productData) => {
@@ -31,8 +32,8 @@ const Card = ({ item }) => {
   return (
     <div className="card" id="card">
       <div className="thumbnail">
-        <Link to="/products">
-        <img src={image} alt="card" />
+        <Link to={`/products/${id}`}>
+          <img src={image} alt="card" />
         </Link>
         <button
           className="wish"
@@ -56,15 +57,17 @@ const Card = ({ item }) => {
         </button>
 
         {!inStock && (
-          <div className="overlay">
-            <span>OUT OF STOCK</span>
-          </div>
+          <Link to={`/products/${id}`}>
+            <div className="overlay">
+              <span>OUT OF STOCK</span>
+            </div>
+          </Link>
         )}
       </div>
 
       <div className="text">
         <h3 className="heading">{name}</h3>
-        <span className="lower">{description}</span>
+        <span className="lower">{trimStr(description)}</span>
         <div className="rating">
           <div className="star-rating high">
             <span>{ratings}</span>
@@ -78,12 +81,12 @@ const Card = ({ item }) => {
             <i className="fas fa-rupee-sign"></i> {discountedPrice}
           </span>
           <span className="price-strike">
-          &#8377; {priceDetails.originalPrice}
+            &#8377; {priceDetails.originalPrice}
           </span>
           <span className="discount">({priceDetails.discount} OFF)</span>
         </span>
       </div>
-      {/* item in cart milgyi ki vo cart mein bhi hai product mein bhi hai, toh ab phir any operation + or - ll be done on that item isliye vohi item find ki and usko dispatchkrdiay na ki item cumng as props */}
+
       {itemInCart ? (
         <div className="product-quantity">
           <button

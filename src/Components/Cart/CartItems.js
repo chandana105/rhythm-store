@@ -16,6 +16,4 @@ const CartItems = () => {
 
 export default CartItems;
 
-{
-  /* <CartCard item={item} setShowModal={setShowModal} key={item.id} /> */
-}
+

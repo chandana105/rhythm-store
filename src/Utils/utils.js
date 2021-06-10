@@ -31,11 +31,18 @@ export const totalDiscountOnOriginalPrice = (cartItems) => {
     (acc, current) =>
       acc +
       current.quantity *
-        (current.priceDetails.originalPrice - current.discountedPrice),
+        (current.priceDetails.originalPrice - priceCal(current.priceDetails)),
     0
   );
 };
 
 export const finalAmountToBePaid = (cartItems) => {
-  return totalOriginalPrice(cartItems) - totalDiscountOnOriginalPrice(cartItems)
-}
+  return (
+    totalOriginalPrice(cartItems) - totalDiscountOnOriginalPrice(cartItems)
+  );
+};
+
+export const trimStr = (str) => {
+  const len = 34;
+  return str.length > len ? str.substring(0, len) + "..." : str;
+};

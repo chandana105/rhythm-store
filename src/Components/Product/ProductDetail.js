@@ -1,6 +1,45 @@
 import Navbar from "../Nav";
-import guitar from "../../assets/images/guitar.jpeg";
+import { useParams } from "react-router-dom";
+import { data } from "../../Data";
+import { priceCal } from "../../Utils/utils";
+import { useCart } from "../../Contexts/cart-context";
+
 const ProductDetail = () => {
+  const { productId } = useParams();
+  // console.log({ productId });
+
+  const { cartItems, wishList, cartDispatch } = useCart();
+  let item = data.find((item) => item.id === Number(productId));
+
+  const itemInWishList = (wishList, product) => {
+    return wishList.some((items) => items.id === product.id);
+  };
+
+  const isInWishList = itemInWishList(wishList, item);
+
+  const isItemInCart = (cartItems, productData) => {
+    return cartItems.some((items) => items.id === productData.id);
+  };
+
+  const itemInCart = isItemInCart(cartItems, item);
+
+  const itemInBoth = (cartItems, productData) => {
+    return cartItems.find((items) => items.id === productData.id);
+  };
+
+  const cartProduct = itemInBoth(cartItems, item);
+
+  const {
+    name,
+    description,
+    image,
+    delivery,
+    priceDetails,
+    highlights,
+    ratings,
+    inStock,
+  } = item;
+
   return (
     <>
       <div className="container product-detail" id="cart">
@@ -10,74 +49,108 @@ const ProductDetail = () => {
             <div className="cartItems">
               <div className="card2 card-horizontal">
                 <div className="thumbnail">
-                  <img src={guitar} alt="horizontal-img" />
+                  <img src={image} alt="horizontal-img" />
                   <button
                     className="wish"
-                    // onClick={() => {
-                    //   !isWishListed
-                    //     ? cartDispatch({
-                    //         type: "ADD_TO_WISHLIST",
-                    //         payload: item,
-                    //       })
-                    //     : cartDispatch({
-                    //         type: "REMOVE_ITEM_FROM_WISHLIST",
-                    //         payload: item,
-                    //       });
-                    // }}
+                    onClick={() => {
+                      !isInWishList
+                        ? cartDispatch({
+                            type: "ADD_TO_WISHLIST",
+                            payload: item,
+                          })
+                        : cartDispatch({
+                            type: "REMOVE_ITEM_FROM_WISHLIST",
+                            payload: item,
+                          });
+                    }}
                   >
-                    <i className="far fa-heart fa-2x "></i>
-
-                    {/* {isWishListed ? (
+                    {isInWishList ? (
                       <i className="fas fa-heart fa-2x wishListed"></i>
                     ) : (
                       <i className="far fa-heart fa-2x "></i>
-                    )} */}
+                    )}
                   </button>
                 </div>
                 <div className="text">
-                  <span className="card-title">
-                    Silver Enterprise Amazing Guitar
-                  </span>
-                  <p>`4-String 24'' Guitar For Kids, Brown`</p>
+                  <span className="card-title">{name}</span>
+                  <p>{description}</p>
                   <div className="rating">
                     <div className="star-rating high">
-                      <span>4.2</span>
+                      <span>{ratings}</span>
                       &nbsp;
                       <i className="fas fa-star"></i>
                     </div>
                   </div>
                   <div>
                     {" "}
-                    Delivery Option : <b> FAST</b>
+                    Delivery : <b> {delivery}</b>
                   </div>
                   <div>
                     <b>Price : </b>
-                    <b style={{ fontSize: "1.15rem" }}>&#8377; 312</b>
-                    <span className="price-strike">&#8377; 999</span>
-                    <span className="discount">(22% OFF)</span>
+                    <b style={{ fontSize: "1.15rem" }}>
+                      &#8377; {priceCal(priceDetails)}
+                    </b>
+                    <span className="price-strike">
+                      &#8377; {priceDetails.originalPrice}
+                    </span>
+                    <span className="discount">
+                      ({priceDetails.discount} OFF)
+                    </span>
                   </div>
 
                   <div className="highlights">
                     Highlights
                     <ul>
-                      <li>Material : Plastic</li>
-                      <li>Non-battery Operated</li>
-                      <li>Age : 1+ Years</li>
+                      {highlights.map((list) => (
+                        <li>{list}</li>
+                      ))}
                     </ul>
                   </div>
 
                   <div className="btn-container-box">
-                    <button
-                      className="btn btn-primary"
-                    //   onClick={() => {
-                    //     cartDispatch({
-                    //       type: "ADD_TO_CART",
-                    //       payload: { ...item, isAddedToCart: true },
-                    //     });
-                    //   }}
-                    >
-                      Add To Cart
-                    </button>
+                    {itemInCart ? (
+                      <div className="product-quantity">
+                        <button
+                          className="btn btn-primary"
+                          onClick={() =>
+                            cartDispatch({
+                              type: "DECREMENT_QUANTITY",
+                              payload: cartProduct,
+                            })
+                          }
+                        >
+                          <i className="fas fa-minus fa-sm"></i>
+                        </button>
+                        <span>{cartProduct.quantity}</span>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() =>
+                            cartDispatch({
+                              type: "INCREMENT_QUANTITY",
+                              payload: cartProduct,
+                            })
+                          }
+                        >
+                          <i className="fas fa-plus fa-sm"></i>
+                        </button>
+                      </div>
+                    ) : inStock ? (
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                          cartDispatch({
+                            type: "ADD_TO_CART",
+                            payload: { ...item, isAddedToCart: true },
+                          });
+                        }}
+                      >
+                        Add To Cart
+                      </button>
+                    ) : (
+                      <button className="btn btn-primary disabled" disabled>
+                        Out Of Stock
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

@@ -9,9 +9,9 @@ import { v4 as uuidv4 } from "uuid";
 
 export const data = [
   {
-    id: uuidv4(),
+    id: 1,
     name: "Silver Enterprise Amazing Guitar",
-    description: `4-String 24'' Guitar For Kids, Brown`,
+    description: `9 Perfect 18" 4-String Acoustic Guitar Learning Kids Toy  (Brown)`,
     ratings: 4,
     delivery: "Fast Delivery",
     image: guitar,
@@ -31,9 +31,9 @@ export const data = [
     ],
   },
   {
-    id: uuidv4(),
+    id: 2,
     name: "SG MUSICAL Harmonium",
-    description: `7 Stopper Doulble Bellow 39 Key Long Sustain Sound Yoga Bhajan 7 Octave Hand Pumped Harmonium`,
+    description: `Laying Style HMT-7 STOPPER 3.2 Octave Hand Pumped Harmonium  (Two Fold Bellow, Male Reed, Bass Reed)`,
     ratings: 4.5,
     delivery: "5 days minimum",
     image: harmonium,
@@ -58,9 +58,10 @@ export const data = [
     ],
   },
   {
-    id: uuidv4(),
+    id: 3,
     name: "Dilurban 3.5mm Clip Microphone For Youtube",
-    description: `Collar Mike for Voice Recording | Lapel Mic Mobile, PC, Laptop`,
+    description: ` Collar Mike for Voice Recording | Lapel Mic Mobile, PC, Laptop, Android Smartphones, DSLR Camera LCM003 Microphone
+    `,
     ratings: 3.6,
     delivery: "Fast Delivery",
     image: mike,
@@ -78,9 +79,9 @@ export const data = [
     ],
   },
   {
-    id: uuidv4(),
+    id: 4,
     name: "Playing Keyboard Made Easy",
-    description: `Chords And Notations Of Top Bollywood Songs`,
+    description: `Chords And Notations Of Top Bollywood Songs  (English, Paperback, Khare Vanshika Verma)`,
     ratings: 4.1,
     delivery: "3 days minimum",
     image: keyboardbook,
@@ -103,9 +104,9 @@ export const data = [
     ],
   },
   {
-    id: uuidv4(),
-    name: "FERONS Mini Wireless Bluetooth  Speaker",
-    description: `Built-in Charger for Phones and Water splash proof with Rubber Surround Sound loudspeaker`,
+    id: 5,
+    name: "FERONS Mini Wireless Bluetooth Speaker",
+    description: `Built-in Charger for Phones and Water splash proof with Rubber Surround Sound loudspeaker and SD Card and Mic 10 W Bluetooth Speaker  (Black, Stereo Channel)`,
     ratings: 5,
     delivery: "Fast Delivery",
     image: speakers,
@@ -128,7 +129,7 @@ export const data = [
     ],
   },
   {
-    id: uuidv4(),
+    id: 6,
     name: "Notes of a Dream",
     description: `English, Trilok Krishna`,
     ratings: 4.7,

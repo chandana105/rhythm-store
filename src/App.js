@@ -18,7 +18,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/product-listing" element={<ProductListing />} />
-      <Route path="/products" element={<ProductDetail />} />
+      <Route path="/products/:productId" element={<ProductDetail />} />
 
       {totalItems(cartItems) === 0 ? (
         <Route path="/cart" element={<EmptyCart />} />
@@ -38,10 +38,4 @@ function App() {
 
 export default App;
 
-{
-  /* <Route path="profile" element={<Profile />}>
-  <Route path="orders" element={<Orders />} />
-  <Route path="addresses" element={<Addresses />} />
-  <Route path="savedCards" element={<SavedCards />} />
-</Route>; */
-}
+

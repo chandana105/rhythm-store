@@ -1,22 +1,24 @@
+import {Link} from 'react-router-dom'
 import { useCart } from "../../Contexts/cart-context";
+import {priceCal} from '../../Utils/utils'
+
 const CartCard = ({ item }) => {
-  const { cartItems, cartDispatch } = useCart();
+  const {  cartDispatch } = useCart();
   const {
     id,
     name,
     image,
     priceDetails,
     description,
-    discountedPrice,
     quantity,
-    isAddedToCart,
-    isWishListed,
   } = item;
 
   return (
     <div className="card2 card-horizontal">
       <div className="thumbnail">
+      <Link to={`/products/${id}`}>
         <img src={image} alt="horizontal-img" />
+        </Link>
       </div>
       <div className="text">
         <span className="card-title">{name}</span>
@@ -25,7 +27,7 @@ const CartCard = ({ item }) => {
         <div>
           <b>Price : </b>
           <b style={{fontSize : "1.15rem"}}>
-          &#8377; {discountedPrice}
+          &#8377; {priceCal(priceDetails)}
           </b>
           <span className="price-strike">
           &#8377; {priceDetails.originalPrice}
@@ -86,7 +88,7 @@ const CartCard = ({ item }) => {
           &nbsp;
 
           <b>
-            <i className="fas fa-rupee-sign"></i> {discountedPrice * quantity}
+            <i className="fas fa-rupee-sign"></i> {priceCal(priceDetails) * quantity}
           </b>
         </div>
       </div>

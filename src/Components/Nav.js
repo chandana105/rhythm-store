@@ -12,7 +12,6 @@ const Nav = () => {
 
   const activeStyle = {
     color: "#6D28D9 ",
-    // fontWeight: "bold",
   };
   return (
     <nav className="header" id="navbar">
