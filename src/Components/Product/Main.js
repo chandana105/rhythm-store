@@ -19,8 +19,8 @@ const Main = ({ filteredData }) => {
                 }
                 value={sortBy}
               >
-                <option value="Price: Low to High">Price: Low to High</option>
-                <option value="Price: High to Low">Price: High to Low</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
               </select>
             </span>
           </div>

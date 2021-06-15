@@ -5,7 +5,7 @@ import mike from "./assets/images/mike.jpeg";
 import keyboardbook from "./assets/images/keyboardbook.jpeg";
 import ARbook from "./assets/images/ARbook.jpeg";
 
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 export const data = [
   {
@@ -22,8 +22,6 @@ export const data = [
     quantity: 1,
     inStock: true,
     fastDelivery: true,
-    isWishListed: false,
-    isAddedToCart: false,
     highlights: [
       "Material : Plastic",
       "Non-battery Operated",
@@ -44,8 +42,6 @@ export const data = [
     quantity: 1,
     inStock: false,
     fastDelivery: false,
-    isWishListed: false,
-    isAddedToCart: false,
     highlights: [
       "Type: Hand Pumped",
       "Number of Keys: 39",
@@ -72,11 +68,7 @@ export const data = [
     quantity: 1,
     inStock: true,
     fastDelivery: true,
-    isWishListed: false,
-    isAddedToCart: false,
-    highlights: [
-      "Color : Black",
-    ],
+    highlights: ["Color : Black"],
   },
   {
     id: 4,
@@ -92,15 +84,13 @@ export const data = [
     quantity: 1,
     inStock: true,
     fastDelivery: false,
-    isWishListed: false,
-    isAddedToCart: false,
     highlights: [
       "Language: English",
       "Binding: Paperback",
       "Publisher: Notion Press, Inc.",
       "Genre: Music",
       "Edition: 1, 2016",
-      "Pages: 252"
+      "Pages: 252",
     ],
   },
   {
@@ -117,14 +107,12 @@ export const data = [
     quantity: 1,
     inStock: true,
     fastDelivery: true,
-    isWishListed: false,
-    isAddedToCart: false,
     highlights: [
       "PowerOutput: 10 W",
       "BatteryLife: 6 hr ",
       "BluetoothVersion: 4.1",
       "WirelessRange: 10 m",
-      "Wireless music streaming via Bluetooth" ,
+      "Wireless music streaming via Bluetooth",
       "Memory Card Slot",
     ],
   },
@@ -142,8 +130,6 @@ export const data = [
     quantity: 1,
     inStock: false,
     fastDelivery: true,
-    isWishListed: false,
-    isAddedToCart: false,
     highlights: [
       "Language: English",
       "Binding: Hardcover",

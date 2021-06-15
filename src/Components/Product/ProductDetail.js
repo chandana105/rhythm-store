@@ -1,35 +1,42 @@
 import Navbar from "../Nav";
 import { useParams } from "react-router-dom";
 import { data } from "../../Data";
-import { priceCal } from "../../Utils/utils";
-import { useCart } from "../../Contexts/cart-context";
+import {
+  priceCal,
+  itemInWishList,
+  isItemInCart,
+  itemInBoth,
+} from "../../Utils/utils";
+import { useCart } from "../../Contexts/data-context";
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  // console.log({ productId });
 
   const { cartItems, wishList, cartDispatch } = useCart();
-  let item = data.find((item) => item.id === Number(productId));
 
-  const itemInWishList = (wishList, product) => {
-    return wishList.some((items) => items.id === product.id);
-  };
+  let item = data.find((item) => item.id === Number(productId));
 
   const isInWishList = itemInWishList(wishList, item);
 
-  const isItemInCart = (cartItems, productData) => {
-    return cartItems.some((items) => items.id === productData.id);
-  };
-
   const itemInCart = isItemInCart(cartItems, item);
-
-  const itemInBoth = (cartItems, productData) => {
-    return cartItems.find((items) => items.id === productData.id);
-  };
 
   const cartProduct = itemInBoth(cartItems, item);
 
+  const toggleWish = (isInWishList) => {
+    if (!isInWishList) {
+      return cartDispatch({
+        type: "ADD_TO_WISHLIST",
+        payload: item,
+      });
+    }
+    return cartDispatch({
+      type: "REMOVE_ITEM_FROM_WISHLIST",
+      payload: item,
+    });
+  };
+
   const {
+    id,
     name,
     description,
     image,
@@ -47,22 +54,12 @@ const ProductDetail = () => {
         <div className="content" id="product">
           <main>
             <div className="cartItems">
-              <div className="card2 card-horizontal">
+              <div className="card2 card-horizontal" key={id}>
                 <div className="thumbnail">
                   <img src={image} alt="horizontal-img" />
                   <button
                     className="wish"
-                    onClick={() => {
-                      !isInWishList
-                        ? cartDispatch({
-                            type: "ADD_TO_WISHLIST",
-                            payload: item,
-                          })
-                        : cartDispatch({
-                            type: "REMOVE_ITEM_FROM_WISHLIST",
-                            payload: item,
-                          });
-                    }}
+                    onClick={() => toggleWish(isInWishList)}
                   >
                     {isInWishList ? (
                       <i className="fas fa-heart fa-2x wishListed"></i>
@@ -134,21 +131,22 @@ const ProductDetail = () => {
                           <i className="fas fa-plus fa-sm"></i>
                         </button>
                       </div>
-                    ) : inStock ? (
+                    ) : (
                       <button
-                        className="btn btn-primary"
+                        className={
+                          inStock
+                            ? "btn btn-primary"
+                            : "btn btn-primary disabled"
+                        }
+                        disabled={!inStock ? true : false}
                         onClick={() => {
                           cartDispatch({
                             type: "ADD_TO_CART",
-                            payload: { ...item, isAddedToCart: true },
+                            payload: item,
                           });
                         }}
                       >
-                        Add To Cart
-                      </button>
-                    ) : (
-                      <button className="btn btn-primary disabled" disabled>
-                        Out Of Stock
+                        {inStock ? "Add To Cart" : "OUT OF STOCK"}
                       </button>
                     )}
                   </div>

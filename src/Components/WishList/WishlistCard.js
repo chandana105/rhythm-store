@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../Contexts/cart-context";
+import { useCart } from "../../Contexts/data-context";
 import { priceCal } from "../../Utils/utils";
 
 const WishlistCard = ({ item }) => {
@@ -37,28 +37,21 @@ const WishlistCard = ({ item }) => {
           <span className="discount">({priceDetails.discount} OFF)</span>
         </span>
       </div>
-      {inStock ? (
-        <button
-          className="btn btn-primary"
-          onClick={() =>
-            cartDispatch({
-              type: "MOVE_TO_CART_FROM_WISHLIST",
-              payload: {
-                ...item,
-                quantity: 1,
-                isWishListed: false,
-                isAddedToCart: true,
-              },
-            })
-          }
-        >
-          Move To Cart
-        </button>
-      ) : (
-        <button className="btn btn-primary disabled" disabled>
-          Move To Cart
-        </button>
-      )}
+      <button
+        className={inStock ? "btn btn-primary" : "btn btn-primary disabled"}
+        disabled={!inStock ? true : false}
+        onClick={() => {
+          cartDispatch({
+            type: "MOVE_TO_CART_FROM_WISHLIST",
+            payload: {
+              ...item,
+              quantity: 1,
+            },
+          });
+        }}
+      >
+        Move To Cart
+      </button>
     </div>
   );
 };

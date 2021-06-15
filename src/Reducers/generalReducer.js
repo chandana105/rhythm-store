@@ -1,24 +1,14 @@
-export const cartReducer = (state, action) => {
+export const generalReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
       return {
         ...state,
         cartItems: state.cartItems.concat({ ...action.payload }),
-        productData: state.productData.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, isAddedToCart: true }
-            : item
-        ),
       };
     case "INCREMENT_QUANTITY":
       return {
         ...state,
         cartItems: state.cartItems.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : { ...item }
-        ),
-        productData: state.productData.map((item) =>
           item.id === action.payload.id
             ? { ...item, quantity: item.quantity + 1 }
             : { ...item }
@@ -29,21 +19,11 @@ export const cartReducer = (state, action) => {
         return {
           ...state,
           cartItems: state.cartItems.filter((item) => item !== action.payload),
-          productData: state.productData.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, isAddedToCart: false, quantity: 1 }
-            : item
-        ),
-        }
+        };
       }
       return {
         ...state,
         cartItems: state.cartItems.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, quantity: item.quantity - 1 }
-            : { ...item }
-        ),
-        productData: state.productData.map((item) =>
           item.id === action.payload.id
             ? { ...item, quantity: item.quantity - 1 }
             : { ...item }
@@ -53,11 +33,6 @@ export const cartReducer = (state, action) => {
       return {
         ...state,
         cartItems: state.cartItems.filter((item) => item !== action.payload),
-        productData: state.productData.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, isAddedToCart: false, quantity: 1 }
-            : item
-        ),
       };
 
     case "ADD_TO_WISHLIST":
@@ -66,12 +41,7 @@ export const cartReducer = (state, action) => {
         wishList: state.wishList.concat({
           ...action.payload,
           quantity: 0,
-          isWishListed: true,
-          isAddedToCart: false,
         }),
-        productData: state.productData.map((item) =>
-          item.id === action.payload.id ? { ...item, isWishListed: true } : item
-        ),
       };
 
     case "MOVE_TO_WISHLIST_FROM_CART":
@@ -94,9 +64,6 @@ export const cartReducer = (state, action) => {
         ...state,
         cartItems: getInCart(),
         wishList: getItemsInWishList(),
-        productData: state.productData.map((item) =>
-          item.id === action.payload.id ? { ...item, isWishListed: true } : item
-        ),
       };
 
     case "MOVE_TO_CART_FROM_WISHLIST":
@@ -120,11 +87,6 @@ export const cartReducer = (state, action) => {
         wishList: state.wishList.filter(
           (item) => item.id !== action.payload.id
         ),
-        productData: state.productData.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, isWishListed: false, isAddedToCart: true , quantity : 1 }
-            : item
-        ),
       };
 
     case "REMOVE_ITEM_FROM_WISHLIST":
@@ -133,14 +95,7 @@ export const cartReducer = (state, action) => {
         wishList: state.wishList.filter(
           (item) => item.id !== action.payload.id
         ),
-        productData: state.productData.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, isWishListed: false }
-            : item
-        ),
       };
-
-   
 
     default:
       return state;

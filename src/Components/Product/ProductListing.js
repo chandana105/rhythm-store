@@ -1,13 +1,14 @@
 import Navbar from "../Nav";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
-import { useCart } from "../../Contexts/cart-context";
+import { data } from "../../Data";
 import { useStore } from "../../Contexts/store-context";
 import { priceCal } from "../../Utils/utils";
 
 export default function ProductListing() {
-  const { sortBy, showInventoryAll, showFastDelivery, priceRange , searchBy } = useStore();
-  const { productData } = useCart();
+  const { sortBy, showInventoryAll, showFastDelivery, priceRange, searchBy } =
+    useStore();
+
   const getSortedData = (productList, sortBy) => {
     const newProductList = productList.map((item) => ({
       ...item,
@@ -26,11 +27,11 @@ export default function ProductListing() {
     return newProductList;
   };
 
-  const sortedData = getSortedData(productData, sortBy);
+  const sortedData = getSortedData(data, sortBy);
 
   const getFilteredData = (
     sortedData,
-    { showInventoryAll, showFastDelivery, priceRange , searchBy }
+    { showInventoryAll, showFastDelivery, priceRange, searchBy }
   ) => {
     return sortedData
       .filter(({ inStock }) => (showInventoryAll ? true : inStock))
@@ -39,16 +40,17 @@ export default function ProductListing() {
         ({ discountedPrice }) =>
           discountedPrice > 0 && discountedPrice <= priceRange
       )
-      .filter(({name}) => name.toLowerCase().includes(searchBy.toLowerCase()) )
-      // .filter(({name}) => name.toLowerCase().startsWith(searchBy.toLowerCase()) )
-
+      .filter(({ name }) =>
+        name.toLowerCase().includes(searchBy.toLowerCase())
+      );
+    // .filter(({name}) => name.toLowerCase().startsWith(searchBy.toLowerCase()) )
   };
 
   const filteredData = getFilteredData(sortedData, {
     showInventoryAll,
     showFastDelivery,
     priceRange,
-    searchBy
+    searchBy,
   });
 
   return (

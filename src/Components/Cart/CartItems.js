@@ -1,9 +1,10 @@
 import CartHeader from "./CartHeader";
 import CartCard from "./CartCard";
-import { useCart } from "../../Contexts/cart-context";
+import { useCart } from "../../Contexts/data-context";
 
 const CartItems = () => {
   const { cartItems } = useCart();
+  console.log({ cartItems });
   return (
     <div className="cartItems">
       <CartHeader />
@@ -15,5 +16,3 @@ const CartItems = () => {
 };
 
 export default CartItems;
-
-

@@ -1,4 +1,4 @@
-import { useCart } from "../../Contexts/cart-context";
+import { useCart } from "../../Contexts/data-context";
 import {
   totalOriginalPrice,
   totalItems,

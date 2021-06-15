@@ -1,11 +1,11 @@
 import Navbar from "../Nav";
 import WishlistCard from "./WishlistCard";
 import WishlistHeader from "./WishlistHeader";
-import { useCart} from '../../Contexts/cart-context'
+import { useCart} from '../../Contexts/data-context'
 
 const Wishlist = () => {
   const {wishList} = useCart();
-
+  console.log({wishList})
   return (
     <div className="container" id="wishlist">
       <Navbar />

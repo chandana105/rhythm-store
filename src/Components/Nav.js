@@ -2,7 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import music from "../assets/images/music.svg";
 import avatar from "../assets/images/avatar.jpg";
 // import person from '../assets/images/person.png'
-import { useCart } from "../Contexts/cart-context";
+import { useCart } from "../Contexts/data-context";
 import { useStore } from "../Contexts/store-context";
 import { totalItems } from "../Utils/utils";
 

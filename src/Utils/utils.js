@@ -46,3 +46,16 @@ export const trimStr = (str) => {
   const len = 34;
   return str.length > len ? str.substring(0, len) + "..." : str;
 };
+
+
+export const itemInWishList = (wishList, product) => {
+  return wishList.some((items) => items.id === product.id);
+};
+
+export   const isItemInCart = (cartItems, productData) => {
+  return cartItems.some((items) => items.id === productData.id);
+};
+
+export const itemInBoth = (cartItems, productData) => {
+  return cartItems.find((items) => items.id === productData.id);
+};

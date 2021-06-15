@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import { useCart } from "../../Contexts/cart-context";
+import { useCart } from "../../Contexts/data-context";
 import {priceCal} from '../../Utils/utils'
 
 const CartCard = ({ item }) => {
@@ -66,8 +66,7 @@ const CartCard = ({ item }) => {
                 payload: {
                   ...item,
                   quantity: 0,
-                  isWishListed: true,
-                  isAddedToCart: false,
+
                 },
               })
             }
