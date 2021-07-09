@@ -16,7 +16,7 @@ const EmptyWishlist = () => {
             </p>
             <img src={wishlist} />
             <button className="btn btn-primary">
-              <Link to="/product-listing">FIND ITEMS TO SAVE</Link>
+              <Link to="/products">FIND ITEMS TO SAVE</Link>
             </button>
           </div>
         </main>

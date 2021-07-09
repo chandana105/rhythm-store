@@ -1,23 +1,16 @@
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { useCart } from "../../Contexts/data-context";
-import {priceCal} from '../../Utils/utils'
+import { priceCal } from "../../Utils/utils";
 
 const CartCard = ({ item }) => {
-  const {  cartDispatch } = useCart();
-  const {
-    id,
-    name,
-    image,
-    priceDetails,
-    description,
-    quantity,
-  } = item;
+  const { cartDispatch } = useCart();
+  const { id, name, image, priceDetails, description, quantity } = item;
 
   return (
     <div className="card2 card-horizontal">
       <div className="thumbnail">
-      <Link to={`/products/${id}`}>
-        <img src={image} alt="horizontal-img" />
+        <Link to={`/products/${id}`}>
+          <img src={image} alt="horizontal-img" />
         </Link>
       </div>
       <div className="text">
@@ -26,13 +19,13 @@ const CartCard = ({ item }) => {
 
         <div>
           <b>Price : </b>
-          <b style={{fontSize : "1.15rem"}}>
-          &#8377; {priceCal(priceDetails)}
+          <b style={{ fontSize: "1.15rem" }}>
+            &#8377; {priceCal(priceDetails)}
           </b>
           <span className="price-strike">
-          &#8377; {priceDetails.originalPrice}
+            &#8377; {priceDetails.originalPrice}
           </span>
-          <span className="discount">({priceDetails.discount} OFF)</span>
+          <span className="discount">({priceDetails.discount} % OFF)</span>
         </div>
 
         <div className="quantity">
@@ -66,7 +59,6 @@ const CartCard = ({ item }) => {
                 payload: {
                   ...item,
                   quantity: 0,
-
                 },
               })
             }
@@ -83,11 +75,10 @@ const CartCard = ({ item }) => {
           </button>
         </div>
         <div className="subtotal">
-          SubTotal :{" "}
-          &nbsp;
-
+          SubTotal : &nbsp;
           <b>
-            <i className="fas fa-rupee-sign"></i> {priceCal(priceDetails) * quantity}
+            <i className="fas fa-rupee-sign"></i>{" "}
+            {priceCal(priceDetails) * quantity}
           </b>
         </div>
       </div>

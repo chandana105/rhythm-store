@@ -34,11 +34,11 @@ const WishlistCard = ({ item }) => {
           <span className="price-strike">
             <i className="fas fa-rupee-sign"></i> {priceDetails.originalPrice}
           </span>
-          <span className="discount">({priceDetails.discount} OFF)</span>
+          <span className="discount">({priceDetails.discount} % OFF)</span>
         </span>
       </div>
       <button
-        className={inStock ? "btn btn-primary" : "btn btn-primary disabled"}
+        className={`btn btn-primary ${inStock ? "" : "disabled"}`}
         disabled={!inStock ? true : false}
         onClick={() => {
           cartDispatch({

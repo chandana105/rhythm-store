@@ -8,7 +8,7 @@ export default function Home() {
       </div>
       <p style={{ textAlign: "center" }}>
         Please visit{" "}
-        <Link to="/product-listing">
+        <Link to="/products">
           <b>Products</b>{" "}
         </Link>{" "}
         page

@@ -16,7 +16,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product-listing" element={<ProductListing />} />
+        <Route path="/products" element={<ProductListing />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
 
         {totalItems(cartItems) === 0 ? (

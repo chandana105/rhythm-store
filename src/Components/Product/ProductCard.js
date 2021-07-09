@@ -81,7 +81,7 @@ const Card = ({ item }) => {
           <span className="price-strike">
             &#8377; {priceDetails.originalPrice}
           </span>
-          <span className="discount">({priceDetails.discount} OFF)</span>
+          <span className="discount">({priceDetails.discount} % OFF)</span>
         </span>
       </div>
 
@@ -107,7 +107,7 @@ const Card = ({ item }) => {
         </div>
       ) : (
         <button
-          className={inStock ? "btn btn-primary" : "btn btn-primary disabled"}
+          className={`btn btn-primary ${inStock ? "" : "disabled"}`}
           disabled={!inStock ? true : false}
           onClick={() => {
             cartDispatch({

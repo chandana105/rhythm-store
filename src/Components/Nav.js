@@ -7,7 +7,7 @@ import { useStore } from "../Contexts/store-context";
 import { totalItems } from "../Utils/utils";
 
 const Nav = () => {
-  const { cartItems } = useCart();
+  const { cartItems, wishList } = useCart();
   const { searchBy, productDispatch } = useStore();
 
   const activeStyle = {
@@ -42,7 +42,7 @@ const Nav = () => {
         </div>
       </div>
 
-      <NavLink to="/product-listing" activeStyle={activeStyle} className="products">
+      <NavLink to="/products" activeStyle={activeStyle} className="products">
         Products
       </NavLink>
 
@@ -54,6 +54,11 @@ const Nav = () => {
         <span className="avatar avatar-large">
           <i className="fas fa-heart"></i>
         </span>
+        {wishList.length >= 1 && (
+          <span className="avatar-badge-icons-cart badge-avatar-large-icons cart badge-red">
+            {wishList.length}
+          </span>
+        )}
         <span className="tooltiptext">Wishlist</span>
       </NavLink>
 
@@ -71,7 +76,6 @@ const Nav = () => {
           </span>
         )}
         <span className="tooltiptext">Cart</span>
-
       </NavLink>
 
       <Link to="/" className="tooltip">
@@ -81,7 +85,6 @@ const Nav = () => {
           <img src={avatar} alt="avatar-sm" />
         </span>
         <span className="tooltiptext">Sign In</span>
-
       </Link>
     </nav>
   );

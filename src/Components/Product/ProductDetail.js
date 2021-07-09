@@ -91,7 +91,7 @@ const ProductDetail = () => {
                       &#8377; {priceDetails.originalPrice}
                     </span>
                     <span className="discount">
-                      ({priceDetails.discount} OFF)
+                      ({priceDetails.discount} % OFF)
                     </span>
                   </div>
 
