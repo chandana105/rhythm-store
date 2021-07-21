@@ -14,8 +14,7 @@ const Wishlist = () => {
           <WishlistHeader />
           <div className="wishlistItems">
             {wishList.map(item => <WishlistCard item={item} key=
-            {item.id} /> )}
-            
+            {item._id} /> )}   
           </div>
         </main>
       </div>

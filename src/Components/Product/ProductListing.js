@@ -1,13 +1,41 @@
 import Navbar from "../Nav";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
-import { data } from "../../Data";
+// import { data } from "../../Data";
 import { useStore } from "../../Contexts/store-context";
 import { priceCal } from "../../Utils/utils";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export default function ProductListing() {
   const { sortBy, showInventoryAll, showFastDelivery, priceRange, searchBy } =
     useStore();
+
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [isError, setError] = useState({ error: false });
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      try {
+        setError({ error: false });
+        const {
+          data: { products },
+        } = await axios.get(
+          "https://rhythm-store-backend.chandana1.repl.co/products"
+        );
+        // console.log(response.data.products)
+        setData(products);
+        setError({ error: false });
+      } catch (err) {
+        setError({ error: err });
+        console.log(err);
+        setData([]);
+      }
+      setLoading(false);
+    })();
+  }, []);
 
   const getSortedData = (productList, sortBy) => {
     const newProductList = productList.map((item) => ({
@@ -57,7 +85,24 @@ export default function ProductListing() {
     <div className="container">
       <Navbar />
       <Sidebar />
-      <Main filteredData={filteredData} />
+      <Main
+        filteredData={filteredData}
+        isLoading={isLoading}
+        isError={isError}
+      />
     </div>
   );
 }
+
+// 1
+// useEffect(() => {
+//   (async () => {
+//     try{
+//       const response = await axios.get('https://rhythm-store-backend.chandana1.repl.co/products')
+//       console.log(response.data.products)
+//     } catch (err) {
+//       console.error('cant found')
+//     }
+//   })();
+
+// }, [])

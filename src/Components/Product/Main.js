@@ -1,7 +1,9 @@
 import ProductCard from "./ProductCard";
 import { useStore } from "../../Contexts/store-context";
+import Spinner from "../Spinner";
+import ErrorComponent from "../ErrorComponent";
 
-const Main = ({ filteredData }) => {
+const Main = ({ filteredData, isLoading, isError }) => {
   const { sortBy, productDispatch } = useStore();
 
   return (
@@ -26,8 +28,10 @@ const Main = ({ filteredData }) => {
           </div>
         </div>
         <div className="products">
+          {isLoading && <Spinner />}
+          {isError.error !== false  && <ErrorComponent error={isError}   />}
           {filteredData.map((item) => (
-            <ProductCard item={item} key={item.id} />
+            <ProductCard item={{ _id: item.id, ...item }} key={item._id} />
           ))}
         </div>
       </main>

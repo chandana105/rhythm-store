@@ -4,12 +4,12 @@ import { priceCal } from "../../Utils/utils";
 
 const CartCard = ({ item }) => {
   const { cartDispatch } = useCart();
-  const { id, name, image, priceDetails, description, quantity } = item;
+  const { _id, name, image, priceDetails, description, quantity } = item;
 
   return (
     <div className="card2 card-horizontal">
       <div className="thumbnail">
-        <Link to={`/products/${id}`}>
+        <Link to={`/products/${_id}`}>
           <img src={image} alt="horizontal-img" />
         </Link>
       </div>

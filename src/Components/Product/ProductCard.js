@@ -10,11 +10,11 @@ import {
 const Card = ({ item }) => {
   const { cartItems, wishList, cartDispatch } = useCart();
   const {
-    id,
+    _id : id,
     name,
     description,
     ratings,
-    delivery,
+    fastDelivery,
     discountedPrice,
     image,
     priceDetails,
@@ -72,7 +72,7 @@ const Card = ({ item }) => {
             &nbsp;
             <i className="fas fa-star"></i>
           </div>
-          <div className="discount">{delivery}</div>
+          <div className="discount">{fastDelivery ? 'Fast Delivery' : 'Within 3-5 Days'}</div>
         </div>
         <span className="price">
           <span className="product-price">

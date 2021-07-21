@@ -9,7 +9,7 @@ export const generalReducer = (state, action) => {
       return {
         ...state,
         cartItems: state.cartItems.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, quantity: item.quantity + 1 }
             : { ...item }
         ),
@@ -24,7 +24,7 @@ export const generalReducer = (state, action) => {
       return {
         ...state,
         cartItems: state.cartItems.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, quantity: item.quantity - 1 }
             : { ...item }
         ),
@@ -46,7 +46,7 @@ export const generalReducer = (state, action) => {
 
     case "MOVE_TO_WISHLIST_FROM_CART":
       const isSameItem = state.wishList.some(
-        (item) => item.id === action.payload.id
+        (item) => item._id === action.payload._id
       );
       const getItemsInWishList = () => {
         if (isSameItem) return state.wishList.map((item) => item);
@@ -57,7 +57,9 @@ export const generalReducer = (state, action) => {
 
       const getInCart = () => {
         if (isSameItem) return state.cartItems.map((item) => item);
-        return state.cartItems.filter((item) => item.id !== action.payload.id);
+        return state.cartItems.filter(
+          (item) => item._id !== action.payload._id
+        );
       };
 
       return {
@@ -68,12 +70,12 @@ export const generalReducer = (state, action) => {
 
     case "MOVE_TO_CART_FROM_WISHLIST":
       const isSameItemMatched = state.cartItems.some(
-        (item) => item.id === action.payload.id
+        (item) => item._id === action.payload._id
       );
       const getItemsInCart = () => {
         if (isSameItemMatched) {
           return state.cartItems.map((item) =>
-            item.id === action.payload.id
+            item._id === action.payload._id
               ? { ...item, quantity: item.quantity + 1 }
               : { ...item }
           );
@@ -85,7 +87,7 @@ export const generalReducer = (state, action) => {
         ...state,
         cartItems: getItemsInCart(),
         wishList: state.wishList.filter(
-          (item) => item.id !== action.payload.id
+          (item) => item._id !== action.payload._id
         ),
       };
 
@@ -93,7 +95,7 @@ export const generalReducer = (state, action) => {
       return {
         ...state,
         wishList: state.wishList.filter(
-          (item) => item.id !== action.payload.id
+          (item) => item._id !== action.payload._id
         ),
       };
 

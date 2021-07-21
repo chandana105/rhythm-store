@@ -4,11 +4,11 @@ import { priceCal } from "../../Utils/utils";
 
 const WishlistCard = ({ item }) => {
   const { cartDispatch } = useCart();
-  const { id, name, image, priceDetails, inStock } = item;
+  const { _id, name, image, priceDetails, inStock } = item;
   return (
     <div className="card " id="card">
       <div className="thumbnail">
-        <Link to={`/products/${id}`}>
+        <Link to={`/products/${_id}`}>
           <img src={image} alt="card" />
         </Link>
         <button

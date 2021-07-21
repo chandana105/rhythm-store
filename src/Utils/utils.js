@@ -47,15 +47,14 @@ export const trimStr = (str) => {
   return str.length > len ? str.substring(0, len) + "..." : str;
 };
 
-
 export const itemInWishList = (wishList, product) => {
-  return wishList.some((items) => items.id === product.id);
+  return wishList.some((items) => items._id === product._id);
 };
 
-export   const isItemInCart = (cartItems, productData) => {
-  return cartItems.some((items) => items.id === productData.id);
+export const isItemInCart = (cartItems, productData) => {
+  return cartItems.some((items) => items._id === productData._id);
 };
 
 export const itemInBoth = (cartItems, productData) => {
-  return cartItems.find((items) => items.id === productData.id);
+  return cartItems.find((items) => items._id === productData._id);
 };
