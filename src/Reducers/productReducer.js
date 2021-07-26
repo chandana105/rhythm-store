@@ -1,5 +1,20 @@
 export const productReducer = (state, action) => {
   switch (action.type) {
+    case "FETCH_ALL_PRODUCTS":
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case "SHOW_LOADER":
+      return {
+        ...state,
+        showLoader: !state.showLoader,
+      };
+    case "SHOW_ERROR":
+      return {
+        ...state,
+        isError: action.payload,
+      };
     case "SORT":
       return {
         ...state,
@@ -37,3 +52,5 @@ export const productReducer = (state, action) => {
       return state;
   }
 };
+
+// 4. yhaan pr humne jaise usestate ki value set krrhe the , vaise hi products ki state daaldi in and jo bhi payload se aayega vo prodcuts empoty array mein aajeyga

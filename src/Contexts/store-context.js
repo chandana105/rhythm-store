@@ -7,9 +7,12 @@ export const useStore = () => {
 };
 
 export const StoreProvider = ({ children }) => {
-  const [{ sortBy, showInventoryAll ,showFastDelivery, priceRange , searchBy }, productDispatch] = useReducer(
+  const [{ products, showLoader, isError, sortBy, showInventoryAll ,showFastDelivery, priceRange , searchBy }, productDispatch] = useReducer(
     productReducer,
     {
+      products : [],
+      showLoader : false,
+      isError : false,
       sortBy: "Price: Low to High",
       showInventoryAll : true,
       showFastDelivery : false,
@@ -18,8 +21,11 @@ export const StoreProvider = ({ children }) => {
     }
   );
   return (
-    <StoreContext.Provider value={{ sortBy, showInventoryAll, showFastDelivery, priceRange , searchBy , productDispatch }}>
+    <StoreContext.Provider value={{ products , showLoader, isError, sortBy, showInventoryAll, showFastDelivery, priceRange , searchBy , productDispatch }}>
       {children}
     </StoreContext.Provider>
   );
 };
+
+
+// 1, havign empty products list (initialy, as we have to fetch prodcuts from backened)

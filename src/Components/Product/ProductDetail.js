@@ -1,7 +1,5 @@
 import Navbar from "../Nav";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import Spinner from "../Spinner";
 import ErrorComponent from "../ErrorComponent";
 import {
@@ -10,45 +8,20 @@ import {
   isItemInCart,
   itemInBoth,
 } from "../../Utils/utils";
+import { useStore } from "../../Contexts/store-context";
 import { useCart } from "../../Contexts/data-context";
+import { useProductDetails } from "../../hooks/useProductDetails";
+import url from "../../config";
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  // console.log({productId})
-
   const { cartItems, wishList, cartDispatch } = useCart();
+  const { showLoader, isError } = useStore();
 
-  const [data, setData] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const [isError, setError] = useState({ error: false });
+  const product = useProductDetails("get", `${url}products/${productId}`);
 
-  // usefect on depenc on prodcutid data item ki jgh
-  // pehle render run hoa then usefect, toh item toh usefect se milegi tbhi vo render mein rerrro derha
 
-  const getProductById = async () => {
-    setLoading(true);
-    try {
-      setError({ error: false });
-      const response = await axios.get(
-        `https://rhythm-store-backend.chandana1.repl.co/products/${productId}`
-      );
-      console.log({ response });
-      setData(response.data.product);
-      setError({ error: false });
-    } catch (err) {
-      setError({ error: err });
-      console.log(err);
-      setData([]);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    data.length === 0 && getProductById();
-  }, []);
-
-  const item = data;
-  // let item = data.find((item) => item._id === Number(productId));
+  const item = product;
 
   const isInWishList = itemInWishList(wishList, item);
 
@@ -69,19 +42,8 @@ const ProductDetail = () => {
     });
   };
 
-  // const {
-  //   _id: id,
-  //   name,
-  //   description,
-  //   image,
-  //   fastDelivery,
-  //   priceDetails,
-  //   highlights,
-  //   ratings,
-  //   inStock,
-  // } = item;
+  // these fxns to put in alag useaxuis tyoe abd vo arrowbtn lgana
 
-  // console.log({ item });
 
   return (
     <>
@@ -90,12 +52,13 @@ const ProductDetail = () => {
         <div className="content" id="product">
           <main>
             <div className="cartItems">
-              {isLoading && <Spinner />}
-              {isError.error !== false && <ErrorComponent error={isError} />}
-              {data.length !== 0 && (
-                <div className="card2 card-horizontal" key={data._id}>
+              {showLoader && <Spinner />}
+              {isError !== false && <ErrorComponent error={isError} />}
+
+              {product.length !== 0 && (
+                <div className="card2 card-horizontal" key={product._id}>
                   <div className="thumbnail">
-                    <img src={data.image} alt="horizontal-img" />
+                    <img src={product.image} alt="horizontal-img" />
                     <button
                       className="wish"
                       onClick={() => toggleWish(isInWishList)}
@@ -108,11 +71,11 @@ const ProductDetail = () => {
                     </button>
                   </div>
                   <div className="text">
-                    <span className="card-title">{data.name}</span>
-                    <p>{data.description}</p>
+                    <span className="card-title">{product.name}</span>
+                    <p>{product.description}</p>
                     <div className="rating">
                       <div className="star-rating high">
-                        <span>{data.ratings}</span>
+                        <span>{product.ratings}</span>
                         &nbsp;
                         <i className="fas fa-star"></i>
                       </div>
@@ -122,7 +85,7 @@ const ProductDetail = () => {
                       Delivery :{" "}
                       <b>
                         {" "}
-                        {data.fastDelivery
+                        {product.fastDelivery
                           ? "Fast Delivery"
                           : "Within 3-5 Days"}
                       </b>
@@ -130,21 +93,21 @@ const ProductDetail = () => {
                     <div>
                       <b>Price : </b>
                       <b style={{ fontSize: "1.15rem" }}>
-                        &#8377; {priceCal(data.priceDetails)}
+                        &#8377; {priceCal(product.priceDetails)}
                       </b>
                       <span className="price-strike">
-                        &#8377; {data.priceDetails.originalPrice}
+                        &#8377; {product.priceDetails.originalPrice}
                       </span>
                       <span className="discount">
-                        ({data.priceDetails.discount} % OFF)
+                        ({product.priceDetails.discount} % OFF)
                       </span>
                     </div>
 
                     <div className="highlights">
                       Highlights
                       <ul>
-                        {data.highlights.map((list) => (
-                          <li>{list}</li>
+                        {product.highlights.map((list) => (
+                          <li key={list.name}>{list}</li>
                         ))}
                       </ul>
                     </div>
@@ -179,11 +142,11 @@ const ProductDetail = () => {
                       ) : (
                         <button
                           className={
-                            data.inStock
+                            product.inStock
                               ? "btn btn-primary"
                               : "btn btn-primary disabled"
                           }
-                          disabled={!data.inStock ? true : false}
+                          disabled={!product.inStock ? true : false}
                           onClick={() => {
                             cartDispatch({
                               type: "ADD_TO_CART",
@@ -191,7 +154,7 @@ const ProductDetail = () => {
                             });
                           }}
                         >
-                          {data.inStock ? "Add To Cart" : "OUT OF STOCK"}
+                          {product.inStock ? "Add To Cart" : "OUT OF STOCK"}
                         </button>
                       )}
                     </div>
@@ -207,3 +170,5 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
+// now we re to get the (ab product milge hain humein unko global state mein daaldiya hai , ab params se id milrhi hai , toh ab we want ki axios requet hogyi toh vo product aayega vhaan se toh that we wanted to get gfrom here, toh ab hum axos mein  toh loader, erro toh usestore se milrhe , toh useprodcutdetail mein prdcutdetails ko as an empty array rkhenge, toh jb got detials from axios toh to return that  )
