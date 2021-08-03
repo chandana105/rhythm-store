@@ -47,7 +47,6 @@ export const useProduct = (requestType, url) => {
 
   useEffect(() => {
     getProductData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
-
-//3. agr products from usestore ki leng = 0 hai , then reducer se vo type ie to fetch rpdcts dispathc krdo fxn , nhi toh showloader and errorr

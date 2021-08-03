@@ -70,4 +70,3 @@ export default function ProductListing() {
   );
 }
 
-// 2. is getitng prodcuts from usestore and apssing to sorteddata variable

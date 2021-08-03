@@ -27,5 +27,3 @@ export const StoreProvider = ({ children }) => {
   );
 };
 
-
-// 1, havign empty products list (initialy, as we have to fetch prodcuts from backened)

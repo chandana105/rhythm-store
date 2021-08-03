@@ -8,7 +8,7 @@ import {
 } from "../../Utils/utils";
 
 const Card = ({ item }) => {
-  const { cartItems, wishList, cartDispatch } = useCart();
+  const { cartItems, wishList,cartDispatch } = useCart();
   const {
     _id : id,
     name,

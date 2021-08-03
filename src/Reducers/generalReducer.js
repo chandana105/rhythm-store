@@ -1,5 +1,10 @@
 export const generalReducer = (state, action) => {
   switch (action.type) {
+    case "FETCH_CART_DATA" : 
+      return {
+        ...state ,
+        cartItems : action.payload || []
+      }
     case "ADD_TO_CART":
       return {
         ...state,

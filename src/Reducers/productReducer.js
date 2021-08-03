@@ -53,4 +53,3 @@ export const productReducer = (state, action) => {
   }
 };
 
-// 4. yhaan pr humne jaise usestate ki value set krrhe the , vaise hi products ki state daaldi in and jo bhi payload se aayega vo prodcuts empoty array mein aajeyga

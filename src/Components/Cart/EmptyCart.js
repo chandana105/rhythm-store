@@ -11,7 +11,7 @@ const EmptyCart = () => {
           <div className="empty-wishlist-card">
             <h3>YOUR CART IS EMPTY</h3>
             <p>Add items to your cart now.</p>
-            <img src={cart} />
+            <img src={cart} alt="cart"/>
             <button className="btn btn-primary">
               <Link to="/products">SHOP NOW</Link>
             </button>

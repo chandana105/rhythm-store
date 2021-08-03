@@ -42,7 +42,6 @@ const ProductDetail = () => {
     });
   };
 
-  // these fxns to put in alag useaxuis tyoe abd vo arrowbtn lgana
 
 
   return (
@@ -171,4 +170,4 @@ const ProductDetail = () => {
 
 export default ProductDetail;
 
-// now we re to get the (ab product milge hain humein unko global state mein daaldiya hai , ab params se id milrhi hai , toh ab we want ki axios requet hogyi toh vo product aayega vhaan se toh that we wanted to get gfrom here, toh ab hum axos mein  toh loader, erro toh usestore se milrhe , toh useprodcutdetail mein prdcutdetails ko as an empty array rkhenge, toh jb got detials from axios toh to return that  )
+

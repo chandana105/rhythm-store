@@ -20,7 +20,7 @@ body {
   display: inline-block;
 }
 
-#navbar .tooltip .tooltiptext {
+#navbar .tooltip .tooltiptext , #navbar .tooltip .tooltiplist {
   visibility: hidden;
   width: 120px;
   color: #000;
@@ -32,14 +32,55 @@ body {
   top: 66%;
   left: 50%;
   margin-left: -60px;
-
   opacity: 0;
   transition: opacity 1s;
 }
 
-#navbar .tooltip:hover .tooltiptext {
+#navbar .tooltip:hover .tooltiptext  , #navbar .tooltip:hover .tooltiplist{
   visibility: visible;
   opacity: 1;
+}
+
+#navbar .tooltip .tooltiplist {
+  width: 0;
+  padding : 0;
+  left : 0;
+  top: 105%;
+  margin-left: -10rem;
+  cursor: pointer;
+
+  /* margin-right : 25rem; */
+}
+
+
+
+
+/* list */
+.list-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width : 16rem;
+  background-color: var(--badge-white-color);
+  border: none;
+  border-bottom: 1px solid var(--secondary-color);
+  border-top: 1px solid var(--secondary-color);
+  box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%)
+
+
+}
+
+.list-item p{
+  padding : 0;
+  display: flex;
+  width: 0rem;
+}
+
+.list-item > * {
+  display: flex;
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
 }
 
 #navbar .avatar-large {
@@ -681,7 +722,7 @@ body {
 
 /* empty wishlist */
 
-.wish-container > div {
+.wish-container > div , .login-container > div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -715,6 +756,44 @@ body {
 
 #empty-wishlist .empty-wishlist-card .btn {
   border-radius: 1rem;
+}
+
+/* Sign in */
+ .simple-input {
+  height: 6rem;
+  padding : 1rem
+}
+
+.simple-input input {
+  width: 20rem;
+  font-size: 1rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--primary-color);
+  outline: 1px solid var(--primary-color);
+}
+
+.password{
+  position: relative;
+}
+
+.password i{
+  position: absolute;
+  bottom: 1.64rem;
+  right: 1.5rem;
+  cursor: pointer;
+}
+
+.login-container .btn{
+  width: 20.3rem;
+  margin-top:1.2rem;
+}
+
+.login-container .sign-up:hover {
+  color : #8b5cf6
+}
+
+.login-container .empty-wishlist-card {
+  margin-top: 2.5rem;
 }
 
 /* Modal */

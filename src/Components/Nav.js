@@ -1,14 +1,29 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import music from "../assets/images/music.svg";
-import avatar from "../assets/images/avatar.jpg";
-// import person from '../assets/images/person.png'
+// import avatar from "../assets/images/avatar.jpg";
+import person from "../assets/images/person.png";
 import { useCart } from "../Contexts/data-context";
 import { useStore } from "../Contexts/store-context";
 import { totalItems } from "../Utils/utils";
+import { useAuth } from "../Contexts/auth-context";
+import { useState, useEffect } from "react";
 
 const Nav = () => {
   const { cartItems, wishList } = useCart();
   const { searchBy, productDispatch } = useStore();
+  const { isUserLoggedIn, logoutHandler } = useAuth();
+  const location = useLocation();
+  const path = location.pathname;
+
+  // console.log({location})
+  // console.log({ path });
+  const [display, setDisplay] = useState(true);
+
+  useEffect(() => {
+    if (path === "/login" || path === '/signup') {
+      setDisplay(false);
+    }
+  }, [path]);
 
   const activeStyle = {
     color: "#6D28D9 ",
@@ -78,14 +93,48 @@ const Nav = () => {
         <span className="tooltiptext">Cart</span>
       </NavLink>
 
-      <Link to="/" className="tooltip">
-        <span className="avatar avatar-small">
-          {/* <img src={person} alt="avatar-sm" 
-          /> */}
-          <img src={avatar} alt="avatar-sm" />
-        </span>
-        <span className="tooltiptext">Sign In</span>
-      </Link>
+      {display && (
+        <div className="tooltip">
+          <span className="avatar avatar-small">
+            <img src={person} alt="avatar-sm" />
+            {/* <img src={avatar} alt="avatar-sm" /> */}
+          </span>
+          <span className="tooltiplist">
+            <div className="list-item-container">
+              {!isUserLoggedIn ? (
+                <div className="list-item">
+                  <span>Welcome </span>
+                  <small> To access WishList and Cart</small>
+                  <button className="btn btn-primary">
+                    <Link to="/login">LOGIN / SIGNUP </Link>
+                  </button>
+                </div>
+              ) : (
+                <div className="list-item">
+                  <span>Hello Username</span>
+                </div>
+              )}
+              <div className="list-item">
+                <Link to="/wishlist">
+                  <span>WishList </span>
+                </Link>
+              </div>
+              <div className="list-item">
+                <Link to="/cart">
+                  <span>Cart</span>
+                </Link>
+              </div>
+              {isUserLoggedIn && (
+                <div className="list-item">
+                  <button className="btn btn-primary" onClick={logoutHandler}>
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          </span>
+        </div>
+      )}
     </nav>
   );
 };
