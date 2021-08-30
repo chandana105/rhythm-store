@@ -11,16 +11,17 @@ import { useState, useEffect } from "react";
 const Nav = () => {
   const { cartItems, wishList } = useCart();
   const { searchBy, productDispatch } = useStore();
-  const { isUserLoggedIn, logoutHandler } = useAuth();
+  const {
+    token,
+    logoutHandler,
+    user: { username },
+  } = useAuth();
   const location = useLocation();
   const path = location.pathname;
-
-  // console.log({location})
-  // console.log({ path });
   const [display, setDisplay] = useState(true);
 
   useEffect(() => {
-    if (path === "/login" || path === '/signup') {
+    if (path === "/login" || path === "/signup") {
       setDisplay(false);
     }
   }, [path]);
@@ -101,7 +102,7 @@ const Nav = () => {
           </span>
           <span className="tooltiplist">
             <div className="list-item-container">
-              {!isUserLoggedIn ? (
+              {!token ? (
                 <div className="list-item">
                   <span>Welcome </span>
                   <small> To access WishList and Cart</small>
@@ -111,7 +112,9 @@ const Nav = () => {
                 </div>
               ) : (
                 <div className="list-item">
-                  <span>Hello Username</span>
+                  <b>
+                    Hello  {username}
+                  </b>
                 </div>
               )}
               <div className="list-item">
@@ -124,12 +127,19 @@ const Nav = () => {
                   <span>Cart</span>
                 </Link>
               </div>
-              {isUserLoggedIn && (
-                <div className="list-item">
-                  <button className="btn btn-primary" onClick={logoutHandler}>
-                    Logout
-                  </button>
-                </div>
+              {token && (
+                <>
+                  <div className="list-item">
+                    <Link to="/profile">
+                      <span>Profile</span>
+                    </Link>
+                  </div>
+                  <div className="list-item">
+                    <button className="btn btn-primary" onClick={logoutHandler}>
+                      Logout
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           </span>

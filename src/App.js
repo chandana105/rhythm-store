@@ -6,11 +6,12 @@ import Wishlist from "./Components/WishList/Wishlist";
 import EmptyWishlist from "./Components/WishList/EmptyWishlist";
 import EmptyCart from "./Components/Cart/EmptyCart";
 import ProductDetail from "./Components/Product/ProductDetail";
-import Login from "./PrivateRoutes/Login & SignUp/Login";
+import Login from "./Auth/Login";
+import SignUp from "./Auth/SignUp";
+import Profile from "./Auth/Profile";
 import { useCart } from "./Contexts/data-context";
 import { totalItems } from "./Utils/utils";
 import { ToastContainer } from "react-toastify";
-import SignUp from "./PrivateRoutes/Login & SignUp/SignUp";
 import { PrivateRoute } from "./PrivateRoutes/PrivateRoute";
 
 function App() {
@@ -21,8 +22,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
         {totalItems(cartItems) === 0 ? (
           <PrivateRoute path="/cart" element={<EmptyCart />} />
         ) : (
@@ -33,6 +32,9 @@ function App() {
         ) : (
           <PrivateRoute path="/wishlist" element={<Wishlist />} />
         )}
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <PrivateRoute path="/profile" element={<Profile />} />
       </Routes>
       <ToastContainer />
     </>

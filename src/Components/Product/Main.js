@@ -28,7 +28,7 @@ const Main = ({ filteredData }) => {
           </div>
         </div>
         <div className="products">
-          {showLoader && <Spinner />}
+          {showLoader && <Spinner type="Audio" color="#c4b5fd" height={60} />}
           {isError !== false  && <ErrorComponent error={isError}   />}
           {filteredData.map((item) => (
             <ProductCard item={{ _id: item.id, ...item }} key={item._id} />

@@ -42,8 +42,6 @@ const ProductDetail = () => {
     });
   };
 
-
-
   return (
     <>
       <div className="container product-detail" id="cart">
@@ -51,7 +49,7 @@ const ProductDetail = () => {
         <div className="content" id="product">
           <main>
             <div className="cartItems">
-              {showLoader && <Spinner />}
+              {showLoader && <Spinner type="Audio" color="#c4b5fd" height={60} />}
               {isError !== false && <ErrorComponent error={isError} />}
 
               {product.length !== 0 && (

@@ -1,13 +1,12 @@
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-toast.configure()
 
-const Toast = (message) => {
+export const Toast = (message) => {
     return toast.dark(message , {
-        position : toast.POSITION.TOP_RIGHT
+        position : toast.POSITION.BOTTOM_RIGHT,
+        autoClose : 2000,
     })
 
 };
 
-export default Toast;

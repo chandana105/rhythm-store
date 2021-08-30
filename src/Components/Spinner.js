@@ -1,11 +1,11 @@
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-const Spinner = () => {
+const Spinner = ({ type, color, height }) => {
   return (
-      <div className="loader">
-      <Loader type="Audio" color="#c4b5fd" height={60} width={60} />
-      </div>
+    <div className="loader">
+      <Loader type={type} color={color} height={height} width={60} />
+    </div>
   );
 };
 
