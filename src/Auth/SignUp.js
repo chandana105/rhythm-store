@@ -64,7 +64,6 @@ const SignUp = () => {
               initialValues={initialValues}
               validationSchema={signupValidationSchema}
               onSubmit={(values) => {
-                // console.log(values);
                 signupHandler(values);
               }}
             >

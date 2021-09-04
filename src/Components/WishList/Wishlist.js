@@ -1,11 +1,10 @@
 import Navbar from "../Nav";
 import WishlistCard from "./WishlistCard";
 import WishlistHeader from "./WishlistHeader";
-import { useCart} from '../../Contexts/data-context'
+import { useData } from "../../Contexts/data-context";
 
 const Wishlist = () => {
-  const {wishList} = useCart();
-  console.log({wishList})
+  const { wishList } = useData();
   return (
     <div className="container" id="wishlist">
       <Navbar />
@@ -13,8 +12,9 @@ const Wishlist = () => {
         <main>
           <WishlistHeader />
           <div className="wishlistItems">
-            {wishList.map(item => <WishlistCard item={item} key=
-            {item._id} /> )}   
+            {wishList.map((item) => (
+              <WishlistCard item={item} key={item._id} />
+            ))}
           </div>
         </main>
       </div>

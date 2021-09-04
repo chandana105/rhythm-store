@@ -9,13 +9,28 @@ import ProductDetail from "./Components/Product/ProductDetail";
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
 import Profile from "./Auth/Profile";
-import { useCart } from "./Contexts/data-context";
+import { useData } from "./Contexts/data-context";
 import { totalItems } from "./Utils/utils";
 import { ToastContainer } from "react-toastify";
 import { PrivateRoute } from "./PrivateRoutes/PrivateRoute";
+import { useAuth } from "./Contexts/auth-context";
+import { useEffect } from "react";
+import { setupAuthHeaderForServiceCalls } from "./Utils/utils";
 
 function App() {
-  const { cartItems, wishList } = useCart();
+  const { cartItems, wishList, getCartData, getWishData } = useData();
+  const { token, getUserData } = useAuth();
+
+  useEffect(() => {
+    setupAuthHeaderForServiceCalls(token);
+    if (token) {
+      getCartData();
+      getWishData();
+      getUserData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
+
   return (
     <>
       <Routes>
@@ -42,5 +57,3 @@ function App() {
 }
 
 export default App;
-
-

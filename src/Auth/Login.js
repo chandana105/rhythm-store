@@ -53,7 +53,6 @@ const Login = () => {
               initialValues={initialValues}
               validationSchema={loginValidationSchema}
               onSubmit={(values) => {
-                // console.log(values);
                 loginHandler(values, state);
               }}
             >

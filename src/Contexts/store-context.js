@@ -7,23 +7,43 @@ export const useStore = () => {
 };
 
 export const StoreProvider = ({ children }) => {
-  const [{ products, showLoader, isError, sortBy, showInventoryAll ,showFastDelivery, priceRange , searchBy }, productDispatch] = useReducer(
-    productReducer,
+  const [
     {
-      products : [],
-      showLoader : false,
-      isError : false,
-      sortBy: "Price: Low to High",
-      showInventoryAll : true,
-      showFastDelivery : false,
-      priceRange : 2050,
-      searchBy : ''
-    }
-  );
+      products,
+      showLoader,
+      isError,
+      sortBy,
+      showInventoryAll,
+      showFastDelivery,
+      priceRange,
+      searchBy,
+    },
+    productDispatch,
+  ] = useReducer(productReducer, {
+    products: [],
+    showLoader: false,
+    isError: false,
+    sortBy: "Price: Low to High",
+    showInventoryAll: true,
+    showFastDelivery: false,
+    priceRange: 2050,
+    searchBy: "",
+  });
   return (
-    <StoreContext.Provider value={{ products , showLoader, isError, sortBy, showInventoryAll, showFastDelivery, priceRange , searchBy , productDispatch }}>
+    <StoreContext.Provider
+      value={{
+        products,
+        showLoader,
+        isError,
+        sortBy,
+        showInventoryAll,
+        showFastDelivery,
+        priceRange,
+        searchBy,
+        productDispatch,
+      }}
+    >
       {children}
     </StoreContext.Provider>
   );
 };
-

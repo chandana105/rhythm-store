@@ -1,22 +1,36 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../Contexts/data-context";
+import { useData } from "../../Contexts/data-context";
+import { useCart } from "../../hooks/useCart";
 import { priceCal } from "../../Utils/utils";
+import { useState } from "react";
+import { itemInBoth } from "../../Utils/utils";
+import { useWishlist } from "../../hooks/useWishlist";
+import Spinner from "../Spinner";
 
-const CartCard = ({ item }) => {
-  const { cartDispatch } = useCart();
-  const { _id, name, image, priceDetails, description, quantity } = item;
+const CartCard = (item) => {
+  const { _id: cartItemId, quantity, product } = item;
+  const { _id: productId, name, image, priceDetails, description } = product;
+  const { increaseQuantity, decreaseQuantity, removeItem } = useCart();
+  const { wishList } = useData();
+  const { moveToWishlistFromCart } = useWishlist();
+
+  const [incQtyLoad, setIncQtyLoad] = useState(false);
+  const [decQtyLoad, setDecQtyLoad] = useState(false);
+  const [removeLoad, setRemoveLoad] = useState(false);
+  const [wishActionLoad, setWishActionLoad] = useState(false);
+
+  const wishProduct = itemInBoth(wishList, item);
 
   return (
     <div className="card2 card-horizontal">
       <div className="thumbnail">
-        <Link to={`/products/${_id}`}>
+        <Link to={`/products/${productId}`}>
           <img src={image} alt="horizontal-img" />
         </Link>
       </div>
       <div className="text">
         <span className="card-title">{name}</span>
         <p>{description}</p>
-
         <div>
           <b>Price : </b>
           <b style={{ fontSize: "1.15rem" }}>
@@ -32,46 +46,56 @@ const CartCard = ({ item }) => {
           <b>Quantity : </b>
           <div className="quantity-buttons">
             <button
-              className="floating"
+              className={`floating ${!decQtyLoad ? "" : "disabled"} || ${
+                !removeLoad ? "" : "disabled"
+              }`}
+              disabled={decQtyLoad ? true : false || removeLoad ? true : false}
               onClick={() =>
-                cartDispatch({ type: "DECREMENT_QUANTITY", payload: item })
+                decreaseQuantity(item, setDecQtyLoad, setRemoveLoad)
               }
             >
-              <i className="fas fa-minus"></i>
+              {removeLoad || decQtyLoad ? (
+                <Spinner type="Oval" color="#4c1d95" height={20}  />
+              ) : (
+                <i className="fas fa-minus"></i>
+              )}
             </button>
             <b>{quantity}</b>
             <button
-              className="floating"
-              onClick={() =>
-                cartDispatch({ type: "INCREMENT_QUANTITY", payload: item })
-              }
+              className={`floating ${!incQtyLoad ? "" : "disabled"}`}
+              disabled={incQtyLoad ? true : false}
+              onClick={() => increaseQuantity(item, setIncQtyLoad)}
             >
-              <i className="fas fa-plus"></i>
+              {incQtyLoad ? (
+                <Spinner type="Oval" color="#4c1d95" height={20} />
+              ) : (
+                <i className="fas fa-plus"></i>
+              )}
             </button>
           </div>
         </div>
         <div className="btn-container-box">
           <button
-            className="btn btn-primary"
+            className={`btn btn-primary ${!wishActionLoad ? "" : "disabled"}`}
+            disabled={wishActionLoad ? true : false}
             onClick={() =>
-              cartDispatch({
-                type: "MOVE_TO_WISHLIST_FROM_CART",
-                payload: {
-                  ...item,
-                  quantity: 0,
-                },
-              })
+              moveToWishlistFromCart(
+                item,
+                wishProduct,
+                removeItem,
+                setWishActionLoad,
+                setRemoveLoad
+              )
             }
           >
-            MOVE TO WISHLIST
+            {wishActionLoad ? "MOVING..." : "MOVE TO WISHLIST"}
           </button>
           <button
-            className="btn btn-secondary"
-            onClick={() =>
-              cartDispatch({ type: "REMOVE_ITEM_FROM_CART", payload: item })
-            }
+            className={`btn btn-secondary ${!removeLoad ? "" : "disabled"}`}
+            disabled={removeLoad ? true : false}
+            onClick={() => removeItem(item, setRemoveLoad)}
           >
-            REMOVE
+            {removeLoad ? "REMOVING..." : "REMOVE"}
           </button>
         </div>
         <div className="subtotal">

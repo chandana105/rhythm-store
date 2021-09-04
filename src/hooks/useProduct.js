@@ -23,7 +23,6 @@ export const useProduct = (requestType, url) => {
           type: "FETCH_ALL_PRODUCTS",
           payload: data.products,
         });
-        // console.log("yeh rha res", data);
         productDispatch({
           type: "SHOW_ERROR",
           payload: false,

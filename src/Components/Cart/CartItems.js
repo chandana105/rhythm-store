@@ -1,19 +1,14 @@
 import CartHeader from "./CartHeader";
 import CartCard from "./CartCard";
-import { useCart } from "../../Contexts/data-context";
-// import { useEffect } from "react";
+import { useData } from "../../Contexts/data-context";
 
 const CartItems = () => {
-  const { cartItems } = useCart();
-  // useEffect(() => {
-  //   getCartData();
-  // }, []);
-  // console.log({ cartItems });
+  const { cartItems } = useData();
   return (
     <div className="cartItems">
       <CartHeader />
       {cartItems.map((item) => (
-        <CartCard item={item} key={item._id} />
+        <CartCard {...item} key={item._id} />
       ))}
     </div>
   );

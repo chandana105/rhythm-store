@@ -1,4 +1,4 @@
-import { useCart } from "../../Contexts/data-context";
+import { useData } from "../../Contexts/data-context";
 import {
   totalOriginalPrice,
   totalItems,
@@ -7,7 +7,7 @@ import {
 } from "../../Utils/utils";
 
 const Checkout = () => {
-  const { cartItems } = useCart();
+  const { cartItems } = useData();
   return (
     <div className="checkout">
       <div className="card text">

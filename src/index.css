@@ -4,6 +4,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* .disabled {
+  cursor: not-allowed;
+} */
 
 #navbar .search-box {
   width: 15rem;
@@ -289,9 +292,9 @@ body {
   flex-wrap: wrap;
 }
 
-.content .products .loader {
+.content .products  .loader {
   margin: auto;
-  position: relative;
+  position: absolute;
   top: 7rem;
   left: 24rem;
 }
@@ -390,7 +393,10 @@ body {
 
 #card .disabled,
 #wishlist .wishlistItems #card .disabled,
-#cart #product .card-horizontal .disabled , .login-container .disabled {
+#cart #product .card-horizontal .thumbnail .disabled,
+#cart .card-horizontal .quantity .disabled,
+#cart .text .btn-container-box .disabled,
+.login-container .disabled {
   cursor: not-allowed;
 }
 
@@ -572,6 +578,7 @@ body {
   align-items: center;
   width: 35%;
 }
+
 
 #cart .text .btn-container-box {
   display: flex;

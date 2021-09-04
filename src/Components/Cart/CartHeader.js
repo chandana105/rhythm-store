@@ -1,9 +1,8 @@
-import { useCart } from "../../Contexts/data-context";
+import { useData } from "../../Contexts/data-context";
 import { totalItems, totalPrice } from "../../Utils/utils";
 
 const CartHeader = () => {
-  const { cartItems } = useCart();
-
+  const { cartItems } = useData();
   return (
     <div className="side-bar-box">
       <span>

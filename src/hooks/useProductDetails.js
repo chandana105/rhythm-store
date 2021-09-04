@@ -6,7 +6,6 @@ export const useProductDetails = (requestType, url) => {
   const { productDispatch } = useStore();
   const [productDetails, setProductDetails] = useState([]);
 
-//   console.log({url})
   const getProductDetails = async () => {
     productDispatch({
       type: "SHOW_LOADER",
@@ -40,9 +39,10 @@ export const useProductDetails = (requestType, url) => {
 
   useEffect(() => {
     productDetails.length === 0 && getProductDetails();
-
    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return productDetails;
 };
+
+

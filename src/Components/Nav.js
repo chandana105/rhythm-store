@@ -2,14 +2,14 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 import music from "../assets/images/music.svg";
 // import avatar from "../assets/images/avatar.jpg";
 import person from "../assets/images/person.png";
-import { useCart } from "../Contexts/data-context";
+import { useData } from "../Contexts/data-context";
 import { useStore } from "../Contexts/store-context";
 import { totalItems } from "../Utils/utils";
 import { useAuth } from "../Contexts/auth-context";
 import { useState, useEffect } from "react";
 
 const Nav = () => {
-  const { cartItems, wishList } = useCart();
+  const { cartItems, wishList } = useData();
   const { searchBy, productDispatch } = useStore();
   const {
     token,
@@ -112,9 +112,7 @@ const Nav = () => {
                 </div>
               ) : (
                 <div className="list-item">
-                  <b>
-                    Hello  {username}
-                  </b>
+                  <b>Hello {username}</b>
                 </div>
               )}
               <div className="list-item">

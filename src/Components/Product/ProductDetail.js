@@ -9,17 +9,27 @@ import {
   itemInBoth,
 } from "../../Utils/utils";
 import { useStore } from "../../Contexts/store-context";
-import { useCart } from "../../Contexts/data-context";
+import { useData } from "../../Contexts/data-context";
+import { useCart } from "../../hooks/useCart";
+import { useWishlist } from "../../hooks/useWishlist";
 import { useProductDetails } from "../../hooks/useProductDetails";
 import url from "../../config";
+import { useState } from "react";
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  const { cartItems, wishList, cartDispatch } = useCart();
+  const { cartItems, wishList } = useData();
   const { showLoader, isError } = useStore();
+  const { addToCart, increaseQuantity, decreaseQuantity } = useCart();
+  const { addToWishlist, handleRemoveWishItem } = useWishlist();
+
+  const [addToCartLoad, setAddToCartLoad] = useState(false);
+  const [incQtyLoad, setIncQtyLoad] = useState(false);
+  const [decQtyLoad, setDecQtyLoad] = useState(false);
+  const [removeLoad, setRemoveLoad] = useState(false);
+  const [wishActionLoad, setWishActionLoad] = useState(false);
 
   const product = useProductDetails("get", `${url}products/${productId}`);
-
 
   const item = product;
 
@@ -31,15 +41,17 @@ const ProductDetail = () => {
 
   const toggleWish = (isInWishList) => {
     if (!isInWishList) {
-      return cartDispatch({
-        type: "ADD_TO_WISHLIST",
-        payload: item,
-      });
+      return addToWishlist(item, setWishActionLoad);
     }
-    return cartDispatch({
-      type: "REMOVE_ITEM_FROM_WISHLIST",
-      payload: item,
-    });
+    return handleRemoveWishItem(item, setWishActionLoad);
+  };
+
+  const getButtonStatus = (inStock) => {
+    if (!inStock && !addToCartLoad) {
+      return "OUT OF STOCK";
+    } else {
+      return "ADD TO CART";
+    }
   };
 
   return (
@@ -49,7 +61,9 @@ const ProductDetail = () => {
         <div className="content" id="product">
           <main>
             <div className="cartItems">
-              {showLoader && <Spinner type="Audio" color="#c4b5fd" height={60} />}
+              {showLoader && (
+                <Spinner type="Audio" color="#c4b5fd" height={60} />
+              )}
               {isError !== false && <ErrorComponent error={isError} />}
 
               {product.length !== 0 && (
@@ -57,11 +71,18 @@ const ProductDetail = () => {
                   <div className="thumbnail">
                     <img src={product.image} alt="horizontal-img" />
                     <button
-                      className="wish"
+                      className={`wish ${!wishActionLoad ? "" : "disabled"} `}
+                      disabled={wishActionLoad ? true : false}
                       onClick={() => toggleWish(isInWishList)}
                     >
                       {isInWishList ? (
-                        <i className="fas fa-heart fa-2x wishListed"></i>
+                        wishActionLoad ? (
+                          <Spinner type="Oval" color="#a78bfa" height={20} />
+                        ) : (
+                          <i className="fas fa-heart fa-2x wishListed"></i>
+                        )
+                      ) : wishActionLoad ? (
+                        <Spinner type="Oval" color="#a78bfa" height={20} />
                       ) : (
                         <i className="far fa-heart fa-2x "></i>
                       )}
@@ -113,45 +134,74 @@ const ProductDetail = () => {
                       {itemInCart ? (
                         <div className="product-quantity">
                           <button
-                            className="btn btn-primary"
+                            className={`btn btn-primary ${
+                              !decQtyLoad ? "" : "disabled"
+                            } || ${!removeLoad ? "" : "disabled"}`}
+                            disabled={
+                              decQtyLoad
+                                ? true
+                                : false || removeLoad
+                                ? true
+                                : false
+                            }
                             onClick={() =>
-                              cartDispatch({
-                                type: "DECREMENT_QUANTITY",
-                                payload: cartProduct,
-                              })
+                              decreaseQuantity(
+                                cartProduct,
+                                setDecQtyLoad,
+                                setRemoveLoad
+                              )
                             }
                           >
-                            <i className="fas fa-minus fa-sm"></i>
+                            {removeLoad || decQtyLoad ? (
+                              <Spinner
+                                type="ThreeDots"
+                                color=" #fff"
+                                height={10}
+                              />
+                            ) : (
+                              <i className="fas fa-minus fa-sm"></i>
+                            )}
                           </button>
                           <span>{cartProduct.quantity}</span>
                           <button
-                            className="btn btn-primary"
+                            className={`btn btn-primary ${
+                              !incQtyLoad ? "" : "disabled"
+                            }`}
+                            disabled={incQtyLoad ? true : false}
                             onClick={() =>
-                              cartDispatch({
-                                type: "INCREMENT_QUANTITY",
-                                payload: cartProduct,
-                              })
+                              increaseQuantity(cartProduct, setIncQtyLoad)
                             }
                           >
-                            <i className="fas fa-plus fa-sm"></i>
+                            {incQtyLoad ? (
+                              <Spinner
+                                type="ThreeDots"
+                                color=" #fff"
+                                height={10}
+                              />
+                            ) : (
+                              <i className="fas fa-plus fa-sm"></i>
+                            )}
                           </button>
                         </div>
                       ) : (
                         <button
                           className={
-                            product.inStock
+                            product.inStock && !addToCartLoad
                               ? "btn btn-primary"
                               : "btn btn-primary disabled"
                           }
-                          disabled={!product.inStock ? true : false}
-                          onClick={() => {
-                            cartDispatch({
-                              type: "ADD_TO_CART",
-                              payload: item,
-                            });
-                          }}
+                          disabled={
+                            !product.inStock
+                              ? true
+                              : false || addToCartLoad
+                              ? true
+                              : false
+                          }
+                          onClick={() => addToCart(item, setAddToCartLoad)}
                         >
-                          {product.inStock ? "Add To Cart" : "OUT OF STOCK"}
+                          {addToCartLoad
+                            ? "Adding..."
+                            : getButtonStatus(product.inStock)}
                         </button>
                       )}
                     </div>
@@ -167,5 +217,3 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
-
-

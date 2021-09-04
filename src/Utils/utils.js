@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const priceCal = (priceDetails) => {
   const discountApplied = parseFloat(priceDetails.discount) / 100; //0.82
   const discountOnPrice = discountApplied * priceDetails.originalPrice; // 0.82 * 799
@@ -13,7 +15,8 @@ export const totalItems = (cartItems) => {
 
 export const totalPrice = (cartItems) => {
   return cartItems.reduce(
-    (acc, current) => acc + current.quantity * priceCal(current.priceDetails),
+    (acc, current) =>
+      acc + current.quantity * priceCal(current.product.priceDetails),
     0
   );
 };
@@ -21,7 +24,7 @@ export const totalPrice = (cartItems) => {
 export const totalOriginalPrice = (cartItems) => {
   return cartItems.reduce(
     (acc, current) =>
-      acc + current.quantity * current.priceDetails.originalPrice,
+      acc + current.quantity * current.product.priceDetails.originalPrice,
     0
   );
 };
@@ -31,7 +34,8 @@ export const totalDiscountOnOriginalPrice = (cartItems) => {
     (acc, current) =>
       acc +
       current.quantity *
-        (current.priceDetails.originalPrice - priceCal(current.priceDetails)),
+        (current.product.priceDetails.originalPrice -
+          priceCal(current.product.priceDetails)),
     0
   );
 };
@@ -58,3 +62,10 @@ export const isItemInCart = (cartItems, productData) => {
 export const itemInBoth = (cartItems, productData) => {
   return cartItems.find((items) => items._id === productData._id);
 };
+
+export function setupAuthHeaderForServiceCalls(token) {
+  if (token) {
+    return (axios.defaults.headers.common["Authorization"] = `Bearer ${token}`);
+  }
+  delete axios.defaults.headers.common["Authorization"];
+}

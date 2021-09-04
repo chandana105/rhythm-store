@@ -4,17 +4,10 @@ import { useNavigate } from "react-router-dom";
 import url from "../config";
 import { Toast } from "../Components/Toast";
 import { useStore } from "../Contexts/store-context";
+import { setupAuthHeaderForServiceCalls } from "../Utils/utils";
 
 const AuthContext = createContext();
 
-function setupAuthHeaderForServiceCalls(token) {
-  if (token) {
-    return (axios.defaults.headers.common["Authorization"] = `Bearer ${token}`);
-  }
-  delete axios.defaults.headers.common["Authorization"];
-}
-
-// agr if an axiso call is madethen , agr status = unauth then logout nd naivgte ot login  ???
 function setupAuthExceptionHandler(logoutHandler, navigate) {
   const UNAUTHORIZED = 401;
   axios.interceptors.response.use(
@@ -57,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     setupAuthHeaderForServiceCalls(token);
     setToken(token);
     localStorage?.setItem("token", JSON.stringify(token));
-    getUserData();
+    // getUserData();
     navigate(state?.from ? state.from : "/");
     Toast("Login Successfull!");
   };
@@ -80,7 +73,7 @@ export const AuthProvider = ({ children }) => {
       productDispatch({
         type: "SHOW_LOADER",
       });
-      const response = await axios.post(`${url}auth/signup `, {
+      const response = await axios.post(`${url}auth/sign-up `, {
         username: inputData.username,
         email: inputData.email,
         password: inputData.password,
@@ -137,6 +130,7 @@ export const AuthProvider = ({ children }) => {
         signupHandler,
         loginHandler,
         logoutHandler,
+        getUserData,
       }}
     >
       {children}
@@ -147,4 +141,3 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   return useContext(AuthContext);
 };
-

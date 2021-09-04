@@ -1,23 +1,38 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../Contexts/data-context";
-import { priceCal } from "../../Utils/utils";
+import { useData } from "../../Contexts/data-context";
+import { useWishlist } from "../../hooks/useWishlist";
+import { useCart } from "../../hooks/useCart";
+import { priceCal, itemInBoth } from "../../Utils/utils";
+import { useState } from "react/cjs/react.development";
+import Spinner from "../Spinner";
 
 const WishlistCard = ({ item }) => {
-  const { cartDispatch } = useCart();
-  const { _id, name, image, priceDetails, inStock } = item;
+  const { cartItems } = useData();
+  const { moveToCartFromWishlist } = useCart();
+  const { handleRemoveWishItem } = useWishlist();
+  const { _id: wishListItemId, product } = item;
+  const { _id: productId, name, image, priceDetails, inStock } = product;
+  const [moveToCartLoad, setMoveToCartLoad] = useState(false);
+  const [wishActionLoad, setWishActionLoad] = useState(false);
+
+  // item present in both wishlist andcart , toh if present here and there too toh have to find tha item and to send with moveotbasket , if presetn item ie qty fieldhogi toh update that else send prdcut to concat with cart
+  const cartProduct = itemInBoth(cartItems, item);
+
   return (
     <div className="card " id="card">
       <div className="thumbnail">
-        <Link to={`/products/${_id}`}>
+        <Link to={`/products/${productId}`}>
           <img src={image} alt="card" />
         </Link>
         <button
           className="close"
-          onClick={() =>
-            cartDispatch({ type: "REMOVE_ITEM_FROM_WISHLIST", payload: item })
-          }
+          onClick={() => handleRemoveWishItem(item, setWishActionLoad)}
         >
-          <i className="fas fa-times fa-lg"></i>
+          {wishActionLoad ? (
+            <Spinner type="ThreeDots" color=" #000" height={10} />
+          ) : (
+            <i className="fas fa-times fa-lg"></i>
+          )}
         </button>
         {!inStock && (
           <div className="overlay">
@@ -38,19 +53,21 @@ const WishlistCard = ({ item }) => {
         </span>
       </div>
       <button
-        className={`btn btn-primary ${inStock ? "" : "disabled"}`}
-        disabled={!inStock ? true : false}
-        onClick={() => {
-          cartDispatch({
-            type: "MOVE_TO_CART_FROM_WISHLIST",
-            payload: {
-              ...item,
-              quantity: 1,
-            },
-          });
-        }}
+        className={`btn btn-primary ${
+          inStock && !moveToCartLoad ? "" : "disabled"
+        }`}
+        disabled={!inStock ? true : false || moveToCartLoad ? true : false}
+        onClick={() =>
+          moveToCartFromWishlist(
+            item,
+            cartProduct,
+            handleRemoveWishItem,
+            setMoveToCartLoad,
+            setWishActionLoad
+          )
+        }
       >
-        Move To Cart
+        {moveToCartLoad ? "Moving..." : "Move To Cart"}
       </button>
     </div>
   );
