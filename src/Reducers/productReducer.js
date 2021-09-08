@@ -1,5 +1,10 @@
 export const productReducer = (state, action) => {
   switch (action.type) {
+    case "FETCH_ALL_CATEGORIES":
+      return {
+        ...state,
+        categories: action.payload,
+      };
     case "FETCH_ALL_PRODUCTS":
       return {
         ...state,
@@ -10,15 +15,15 @@ export const productReducer = (state, action) => {
         ...state,
         showLoader: !state.showLoader,
       };
-    case "SHOW_ERROR":
-      return {
-        ...state,
-        isError: action.payload,
-      };
     case "SORT":
       return {
         ...state,
         sortBy: action.payload,
+      };
+    case "SORT_BY_CATEGORY":
+      return {
+        ...state,
+        sortByCategory: action.payload,
       };
     case "TOGGLE_INVENTORY":
       return {
@@ -43,13 +48,14 @@ export const productReducer = (state, action) => {
     case "CLEAR_ALL_FILTERS":
       return {
         ...state,
+        searchBy: "",
         sortBy: "Price: Low to High",
+        sortByCategory: "All",
         showInventoryAll: false,
         showFastDelivery: false,
-        priceRange: 2050,
+        priceRange: 20000,
       };
     default:
       return state;
   }
 };
-

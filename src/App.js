@@ -16,6 +16,7 @@ import { PrivateRoute } from "./PrivateRoutes/PrivateRoute";
 import { useAuth } from "./Contexts/auth-context";
 import { useEffect } from "react";
 import { setupAuthHeaderForServiceCalls } from "./Utils/utils";
+import NotFound from "./Components/NotFound";
 
 function App() {
   const { cartItems, wishList, getCartData, getWishData } = useData();
@@ -37,6 +38,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
+        <Route path="/categories/:categoryId" element={<ProductListing />} />
         {totalItems(cartItems) === 0 ? (
           <PrivateRoute path="/cart" element={<EmptyCart />} />
         ) : (
@@ -47,9 +49,10 @@ function App() {
         ) : (
           <PrivateRoute path="/wishlist" element={<Wishlist />} />
         )}
+        <PrivateRoute path="/profile" element={<Profile />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <PrivateRoute path="/profile" element={<Profile />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       <ToastContainer />
     </>

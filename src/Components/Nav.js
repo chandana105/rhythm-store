@@ -7,6 +7,7 @@ import { useStore } from "../Contexts/store-context";
 import { totalItems } from "../Utils/utils";
 import { useAuth } from "../Contexts/auth-context";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const Nav = () => {
   const { cartItems, wishList } = useData();
@@ -19,12 +20,20 @@ const Nav = () => {
   const location = useLocation();
   const path = location.pathname;
   const [display, setDisplay] = useState(true);
+  const [searchDisplay, setSearchDisplay] = useState(false);
+  const { categoryId } = useParams();
 
   useEffect(() => {
     if (path === "/login" || path === "/signup") {
       setDisplay(false);
     }
   }, [path]);
+
+  useEffect(() => {
+    if (path === "/products" || path === `/categories/${categoryId}`) {
+      setSearchDisplay(true);
+    }
+  }, [path, categoryId]);
 
   const activeStyle = {
     color: "#6D28D9 ",
@@ -38,25 +47,27 @@ const Nav = () => {
         </span>
       </NavLink>
 
-      <div className="search-container">
-        <div className="search-box search">
-          <i className="fas fa-search"></i>
-          <span>
-            <input
-              type="text"
-              name=""
-              placeholder="Search for Products"
-              value={searchBy}
-              onChange={(e) =>
-                productDispatch({
-                  type: "SEARCH_BY_PRODUCT_TITLE",
-                  payload: e.target.value,
-                })
-              }
-            />
-          </span>
+      {searchDisplay && (
+        <div className="search-container">
+          <div className="search-box search">
+            <i className="fas fa-search"></i>
+            <span>
+              <input
+                type="text"
+                name=""
+                placeholder="Search for Products"
+                value={searchBy}
+                onChange={(e) =>
+                  productDispatch({
+                    type: "SEARCH_BY_PRODUCT_TITLE",
+                    payload: e.target.value,
+                  })
+                }
+              />
+            </span>
+          </div>
         </div>
-      </div>
+      )}
 
       <NavLink to="/products" activeStyle={activeStyle} className="products">
         Products

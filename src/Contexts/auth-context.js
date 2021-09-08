@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     setupAuthHeaderForServiceCalls(token);
     setToken(token);
     localStorage?.setItem("token", JSON.stringify(token));
-    // getUserData();
+    // console.log({ state });
     navigate(state?.from ? state.from : "/");
     Toast("Login Successfull!");
   };

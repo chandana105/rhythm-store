@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useStore } from "../Contexts/store-context";
 
-export const useProductDetails = (requestType, url) => {
+export const useCategoryDetails = (requestType, url) => {
   const { productDispatch } = useStore();
-  const [productDetails, setProductDetails] = useState([]);
+  const [categoryDetails, setCategoryDetails] = useState([]);
 
-  const getProductDetails = async () => {
+  const getCategoryDetails = async () => {
     productDispatch({
       type: "SHOW_LOADER",
     });
@@ -15,10 +15,11 @@ export const useProductDetails = (requestType, url) => {
         method: requestType,
         url,
       });
-      setProductDetails(data.product);
+      setCategoryDetails(data.category.products);
+      // console.log(data.category , 'use');
     } catch (err) {
       console.log(err);
-      setProductDetails([]);
+      setCategoryDetails([]);
     }
     productDispatch({
       type: "SHOW_LOADER",
@@ -26,9 +27,9 @@ export const useProductDetails = (requestType, url) => {
   };
 
   useEffect(() => {
-    productDetails.length === 0 && getProductDetails();
+    categoryDetails.length === 0 && getCategoryDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return productDetails;
+  return categoryDetails;
 };

@@ -10,6 +10,7 @@ export const useCart = () => {
   const navigate = useNavigate();
   const { token } = useAuth();
 
+
   const addToCart = (item, setAddToCartLoad) => {
     if (token) {
       handleAddToCart(item, setAddToCartLoad);
@@ -84,7 +85,6 @@ export const useCart = () => {
       if (response.status === 200) {
         cartDispatch({ type: "DECREMENT_QUANTITY", payload: cartProduct });
         Toast("CartItem quantity decresed");
-
       }
     } catch (err) {
       console.log(err, "err");
@@ -100,7 +100,6 @@ export const useCart = () => {
       if (response.status === 200) {
         cartDispatch({ type: "REMOVE_ITEM_FROM_CART", payload: item });
         Toast("Removed From Cart");
-
       }
     } catch (err) {
       console.log(err);
@@ -164,13 +163,4 @@ export const useCart = () => {
   };
 };
 
-// moveotcartformwishlit:- if vo id nhi in cartitems toh addtocart and remvoe from wishlist , else update qty inc and remove fro mwishlsit
 
-// const isSameItemMatched = state.cartItems.some(
-//   (item) => item._id === action.payload._id
-// );
-
-// agr jo cartproduct mila ie itemnot rpesent vo undef toh cocnat it
-// ERRRO OF _ID
-
-// mvoetowishlit, pehle to see if in both, wishprodut, , if yes then toast already there, idf no then moveto wislit ll become add towishlsit, jsut qutnity : 0 undef, and remvoeitemform cart

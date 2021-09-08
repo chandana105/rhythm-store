@@ -22,7 +22,6 @@ const Login = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   const enableShowPassword = () => {
     setShowPassword((prev) => !prev);
     setPasswordType((prev) => (prev === "password" ? "text" : "password"));
@@ -105,6 +104,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-

@@ -15,7 +15,7 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordType, setPasswordType] = useState("password");
 
-  // obviously agr /signup route ke liye we ll go to signup.js pg and yhhan on reload useffect toh agr token hain toh yhhan nhi jayega ll go to /
+
   useEffect(() => {
     token && navigate("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,10 +1,9 @@
 import ProductCard from "./ProductCard";
 import { useStore } from "../../Contexts/store-context";
 import Spinner from "../Spinner";
-import ErrorComponent from "../ErrorComponent";
 
 const Main = ({ filteredData }) => {
-  const { sortBy, showLoader, isError, productDispatch } = useStore();
+  const { sortBy, showLoader, productDispatch } = useStore();
 
   return (
     <div className="content">
@@ -29,8 +28,15 @@ const Main = ({ filteredData }) => {
         </div>
         {/* oval  */}
         <div className="products">
-          {showLoader && <div className="loader"> <Spinner type="Audio" color="#c4b5fd" height={60} /> </div>}
-          {isError !== false  && <ErrorComponent error={isError}   />}
+          {showLoader && (
+            <div className="loader">
+              {" "}
+              <Spinner type="Audio" color="#c4b5fd" height={60} />{" "}
+            </div>
+          )}
+          {filteredData.length === 0 && (
+            <div>No products found, Try reloading the page.</div>
+          )}
           {filteredData.map((item) => (
             <ProductCard item={{ _id: item.id, ...item }} key={item._id} />
           ))}
@@ -41,9 +47,3 @@ const Main = ({ filteredData }) => {
 };
 
 export default Main;
-
-
-// loadrs mein problem as on same page we re keepingloader for so many things ,so how it ll diferetate: -
-// 1) prodcuts page :- prodcutsloading , adtocartloadign, inc/dec qty loading, add to wislist load, remvoewishlsitload
-// 2) carts page : - cartloader , removeitem load, qtyinc/dec load, mocetowishsit load
-// 3) wishlst page:- wishlsitlaoder, moveto cart loader, remove loader

@@ -47,7 +47,6 @@ const Card = ({ item }) => {
     }
     return handleRemoveWishItem(item, setWishActionLoad);
   };
-
   return (
     <div className="card" id="card">
       <div className="thumbnail">

@@ -9,10 +9,11 @@ export const useStore = () => {
 export const StoreProvider = ({ children }) => {
   const [
     {
+      categories,
       products,
       showLoader,
-      isError,
       sortBy,
+      sortByCategory,
       showInventoryAll,
       showFastDelivery,
       priceRange,
@@ -20,22 +21,24 @@ export const StoreProvider = ({ children }) => {
     },
     productDispatch,
   ] = useReducer(productReducer, {
+    categories : [],
     products: [],
     showLoader: false,
-    isError: false,
     sortBy: "Price: Low to High",
+    sortByCategory : "All",
     showInventoryAll: true,
     showFastDelivery: false,
-    priceRange: 2050,
+    priceRange: 20000,
     searchBy: "",
   });
   return (
     <StoreContext.Provider
       value={{
+        categories,
         products,
         showLoader,
-        isError,
         sortBy,
+        sortByCategory,
         showInventoryAll,
         showFastDelivery,
         priceRange,

@@ -14,7 +14,7 @@ const EmptyWishlist = () => {
               Add items that you like to your wishlist. Click 🤍 to save
               products.
             </p>
-            <img src={wishlist} />
+            <img src={wishlist} alt="wishlist" />
             <button className="btn btn-primary">
               <Link to="/products">FIND ITEMS TO SAVE</Link>
             </button>

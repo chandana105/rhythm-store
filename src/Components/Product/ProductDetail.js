@@ -1,7 +1,6 @@
 import Navbar from "../Nav";
 import { useParams } from "react-router-dom";
 import Spinner from "../Spinner";
-import ErrorComponent from "../ErrorComponent";
 import {
   priceCal,
   itemInWishList,
@@ -19,7 +18,7 @@ import { useState } from "react";
 const ProductDetail = () => {
   const { productId } = useParams();
   const { cartItems, wishList } = useData();
-  const { showLoader, isError } = useStore();
+  const { showLoader } = useStore();
   const { addToCart, increaseQuantity, decreaseQuantity } = useCart();
   const { addToWishlist, handleRemoveWishItem } = useWishlist();
 
@@ -64,8 +63,6 @@ const ProductDetail = () => {
               {showLoader && (
                 <Spinner type="Audio" color="#c4b5fd" height={60} />
               )}
-              {isError !== false && <ErrorComponent error={isError} />}
-
               {product.length !== 0 && (
                 <div className="card2 card-horizontal" key={product._id}>
                   <div className="thumbnail">

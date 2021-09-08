@@ -13,7 +13,6 @@ export const CartProvider = ({ children }) => {
     }
   );
 
-  // showloader comong false
   const getCartData = async () => {
     
     try {

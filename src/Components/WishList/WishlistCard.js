@@ -3,7 +3,7 @@ import { useData } from "../../Contexts/data-context";
 import { useWishlist } from "../../hooks/useWishlist";
 import { useCart } from "../../hooks/useCart";
 import { priceCal, itemInBoth } from "../../Utils/utils";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import Spinner from "../Spinner";
 
 const WishlistCard = ({ item }) => {
@@ -15,7 +15,6 @@ const WishlistCard = ({ item }) => {
   const [moveToCartLoad, setMoveToCartLoad] = useState(false);
   const [wishActionLoad, setWishActionLoad] = useState(false);
 
-  // item present in both wishlist andcart , toh if present here and there too toh have to find tha item and to send with moveotbasket , if presetn item ie qty fieldhogi toh update that else send prdcut to concat with cart
   const cartProduct = itemInBoth(cartItems, item);
 
   return (
