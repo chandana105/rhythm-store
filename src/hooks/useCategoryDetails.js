@@ -16,7 +16,6 @@ export const useCategoryDetails = (requestType, url) => {
         url,
       });
       setCategoryDetails(data.category.products);
-      // console.log(data.category , 'use');
     } catch (err) {
       console.log(err);
       setCategoryDetails([]);

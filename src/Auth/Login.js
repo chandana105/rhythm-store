@@ -40,6 +40,15 @@ const Login = () => {
       .required("Password is required"),
   });
 
+  const handleSubmit = async (inputData) => {
+    try {
+      await loginHandler(inputData);
+    } catch (err) {
+      console.log(err, "err");
+    }
+    navigate(state?.from ? state.from : "/");
+  };
+
   return (
     <div className="container login-container" id="empty-wishlist">
       <Navbar />
@@ -52,7 +61,7 @@ const Login = () => {
               initialValues={initialValues}
               validationSchema={loginValidationSchema}
               onSubmit={(values) => {
-                loginHandler(values, state);
+                handleSubmit(values);
               }}
             >
               {(formik) => {

@@ -1,6 +1,5 @@
 import { NavLink, Link, useLocation } from "react-router-dom";
 import music from "../assets/images/music.svg";
-// import avatar from "../assets/images/avatar.jpg";
 import person from "../assets/images/person.png";
 import { useData } from "../Contexts/data-context";
 import { useStore } from "../Contexts/store-context";

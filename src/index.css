@@ -4,9 +4,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* .disabled {
-  cursor: not-allowed;
-} */
 
 #navbar .search-box {
   width: 15rem;

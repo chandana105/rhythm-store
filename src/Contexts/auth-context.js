@@ -46,12 +46,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const loginUser = (token, state) => {
+  const loginUser = (token) => {
     setupAuthHeaderForServiceCalls(token);
     setToken(token);
     localStorage?.setItem("token", JSON.stringify(token));
-    // console.log({ state });
-    navigate(state?.from ? state.from : "/");
     Toast("Login Successfull!");
   };
 
@@ -96,7 +94,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const loginHandler = async (inputData, state) => {
+  const loginHandler = async (inputData) => {
     try {
       productDispatch({
         type: "SHOW_LOADER",
@@ -108,7 +106,7 @@ export const AuthProvider = ({ children }) => {
       const { status, data } = response;
       const { token } = data;
       if (status === 200) {
-        loginUser(token, state);
+        loginUser(token);
       }
     } catch (err) {
       setError(err.response.data.message);
