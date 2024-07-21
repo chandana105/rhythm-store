@@ -3,7 +3,6 @@
 Rhythm-Store is an eCommerce platform for music entities. The project is built using ReactJS as the main framework for the front end with the help of react useReducer + contextAPI for global state management. User Authentication is done with the help of JWT tokens. User can perform CRUD operations on Cart & Wishlist.
 
  - Live demo: [RhythmStore](https://rhythm-store.netlify.app/)
- - [Live repl Server](https://replit.com/@Chandana1/Rhythm-Store-Backend#index.js)
  - [Github Backend Url](https://github.com/chandana105/Rhythm-Store-Backend)
 
 ## Tech Stack
